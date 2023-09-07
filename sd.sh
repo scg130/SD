@@ -74,6 +74,11 @@ vi modules/launch_utils.py
 
 yum install -y mesa-libGL.x86_64
 
+vi launch.py
+#新增
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+
 python launch.py
 
-python launch.py --use-cpu all --skip-torch-cuda-test --no-gradio-queue --no-half --skip-version-check --opt-split-attention --ckpt model.ckpt --port 6666 --listen --share
+python launch.py --use-cpu all --skip-torch-cuda-test --no-gradio-queue --no-half --skip-version-check --opt-split-attention --enable-insecure-extension-access --theme dark --ckpt model.ckpt --port 8888 --listen --share
