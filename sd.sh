@@ -82,3 +82,13 @@ ssl._create_default_https_context = ssl._create_unverified_context
 python launch.py
 
 python launch.py --use-cpu all --skip-torch-cuda-test --no-gradio-queue --no-half --skip-version-check --opt-split-attention --enable-insecure-extension-access --theme dark --ckpt model.ckpt --port 8888 --listen --share
+
+
+#视频工具
+#git clone https://github.com/deforum-art/deforum-for-automatic1111-webui extensions/deforum
+
+# 模型下载
+#https://www.liblibai.com/modelinfo/9470cdf92e33f5ad72cc2f40f834a69a
+
+# 中文插件
+#git clone https://github.com/dtlnor/stable-diffusion-webui-localization-zh_CN extensions/stable-diffusion-webui-localization-zh_CN
