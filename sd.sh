@@ -18,6 +18,8 @@ vi /usr/libexec/urlgrabber-ext-down
 #  #! /usr/bin/python22 -> #! /usr/bin/python2
 
 
+yum install -y mesa-libGL.x86_64
+
 yum install -y  xz-devel python-backports-lzma
 cd /usr/local/
 ll
@@ -69,15 +71,13 @@ pip install torch==1.11.0+cu113 torchvision==0.12.0+cu113 torchaudio===0.11.0+cu
 
 pip install --proxy http://127.0.0.1:7890  https://github.com/openai/CLIP/archive/d50d76daa670286dd6cacf3bcd80b5e4823fc8e1.zip --prefer-binary
 
-vi modules/launch_utils.py 
+# vi modules/launch_utils.py 
 # -C 并替换成 --exec-path
 
-yum install -y mesa-libGL.x86_64
-
-vi launch.py
-#新增
-import ssl
-ssl._create_default_https_context = ssl._create_unverified_context
+# vi launch.py
+# #新增
+# import ssl
+# ssl._create_default_https_context = ssl._create_unverified_context
 
 python launch.py
 
