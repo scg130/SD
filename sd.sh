@@ -1,5 +1,6 @@
 #/bin/bash
 #https://blog.csdn.net/qq_43610975/article/details/131031866
+
 wget https://www.openssl.org/source/openssl-1.1.1q.tar.gz --no-check-certificate
 tar xf openssl-1.1.1q.tar.gz 
 cd openssl-1.1.1q
@@ -10,6 +11,7 @@ openssl version
 vi /etc/ld.so.conf
 #include ld.so.conf.d/*.conf
 #/usr/local/openssl-1.1.1/lib/
+
 ldconfig 
 cp /usr/local/openssl-1.1.1/bin/openssl /usr/bin/openssl
 openssl version
@@ -93,3 +95,4 @@ python launch.py --use-cpu all --skip-torch-cuda-test --no-gradio-queue --no-hal
 #git clone https://github.com/deforum-art/deforum-for-automatic1111-webui 
 #git clone https://github.com/dtlnor/stable-diffusion-webui-localization-zh_CN
 #git clone https://github.com/Mikubill/sd-webui-controlnet.git
+#git clone https://github.com/SLAPaper/a1111-sd-webui-tome
