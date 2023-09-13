@@ -11,3 +11,6 @@ pip install pyqtwebengine==5.15
 # float() 使用cpu   cuda()  使用gpu
 # model = AutoModel.from_pretrained("THUDM/chatglm2-6b-int4", trust_remote_code=True).float()
 # demo.queue().launch(share=True, inbrowser=True,server_port=6543,server_name="0.0.0.0")
+
+# ModuleNotFoundError: No module named 'transformers_modules.chatglm2-6b'  版本太新问题解决
+# pip install transformers==4.26.1
