@@ -14,3 +14,6 @@ pip install pyqtwebengine==5.15
 
 # ModuleNotFoundError: No module named 'transformers_modules.chatglm2-6b'  版本太新问题解决
 # pip install transformers==4.26.1
+
+
+# windows tdm-gcc 安装 https://cloud.tencent.com/developer/article/2251638
