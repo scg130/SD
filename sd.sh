@@ -91,3 +91,6 @@ python launch.py --use-cpu all --skip-torch-cuda-test --no-gradio-queue --no-hal
 #git clone https://github.com/dtlnor/stable-diffusion-webui-localization-zh_CN
 #git clone https://github.com/Mikubill/sd-webui-controlnet.git
 #git clone https://github.com/OpenTalker/SadTalker
+cd extensions/SadTalker
+chmod -R 755 scripts/download_models.sh
+scripts/download_models.sh
