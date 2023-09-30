@@ -4,6 +4,8 @@ cd ChatGLM2-6B
 pip install -r requirements.txt
 pip install pyqt5==5.15
 pip install pyqtwebengine==5.15
+cd ChatGLM2-6B/
+git clone https://github.com/scg130/thudm
 #模型下载   https://cloud.tsinghua.edu.cn/d/674208019e314311ab5c/
 
 # web_demo.py
