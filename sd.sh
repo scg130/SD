@@ -83,7 +83,7 @@ pip install --proxy http://127.0.0.1:7890  https://github.com/openai/CLIP/archiv
 
 python launch.py
 
-python launch.py --use-cpu all --skip-torch-cuda-test --no-gradio-queue --no-half --skip-version-check --opt-split-attention --enable-insecure-extension-access --theme dark --ckpt model.ckpt --port 8888 --listen --share --api
+python launch.py --use-cpu all --skip-torch-cuda-test --no-gradio-queue --no-half --skip-version-check --opt-split-attention --enable-insecure-extension-access --theme dark --ckpt model.ckpt --port 8888 --listen --share --api --disable-safe-unpickle
 
 
 # 插件
