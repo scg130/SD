@@ -87,12 +87,17 @@ python launch.py --use-cpu all --skip-torch-cuda-test --no-gradio-queue --no-hal
 
 
 # 插件
-#git clone https://github.com/s0md3v/sd-webui-roop.git
-#git clone https://github.com/Uminosachi/sd-webui-inpaint-anything.git
+
 #git clone https://github.com/Scholar01/sd-webui-mov2mov.git
 #git clone https://github.com/deforum-art/deforum-for-automatic1111-webui 
 #git clone https://github.com/dtlnor/stable-diffusion-webui-localization-zh_CN
 #git clone https://github.com/Mikubill/sd-webui-controlnet.git
+
+#git clone https://github.com/ajay-sainy/Wav2Lip-GFPGAN.git
+#git clone https://github.com/Uminosachi/sd-webui-inpaint-anything.git
+
+#git clone https://github.com/s0md3v/sd-webui-roop.git
+
 #git clone https://github.com/OpenTalker/SadTalker
 cd extensions/SadTalker
 chmod -R 755 scripts/download_models.sh
