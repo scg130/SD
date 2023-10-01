@@ -87,6 +87,7 @@ python launch.py --use-cpu all --skip-torch-cuda-test --no-gradio-queue --no-hal
 
 
 # 插件
+#git clone https://github.com/Uminosachi/sd-webui-inpaint-anything.git
 #git clone https://github.com/Scholar01/sd-webui-mov2mov.git
 #git clone https://github.com/deforum-art/deforum-for-automatic1111-webui 
 #git clone https://github.com/dtlnor/stable-diffusion-webui-localization-zh_CN
