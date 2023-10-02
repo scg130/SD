@@ -98,8 +98,15 @@ python launch.py --use-cpu all --skip-torch-cuda-test --no-gradio-queue --no-hal
 ##git clone https://github.com/ajay-sainy/Wav2Lip-GFPGAN.git
 ##git clone https://github.com/s0md3v/sd-webui-roop.git
 
-
 #git clone https://github.com/OpenTalker/SadTalker
 cd extensions/SadTalker
 chmod -R 755 scripts/download_models.sh
 scripts/download_models.sh
+
+
+
+#换脸软件 facefusion
+git clone https://github.com/facefusion/facefusion.git
+文件在百度网盘下载
+将facefusion.rar解压到根目录
+将.insightface解压到 C:\Users\用户名
