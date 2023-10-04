@@ -44,13 +44,13 @@ wget https://huggingface.co/naonovn/chilloutmix_NiPrunedFp32Fix/resolve/main/chi
 # chmod -R 755 webui.sh
 # python -m venv venv
 # source venv/bin/activate
-pip install --proxy http://127.0.0.1:7890 urllib3==1.25.11
-pip install --proxy https://127.0.0.1:7890 -r requirements.txt
+pip install --proxy http://127.0.0.1:8118 urllib3==1.25.11
+pip install --proxy https://127.0.0.1:8118 -r requirements.txt
 
 
 git clone https://github.com/xinntao/BasicSR.git
 cd BasicSR/
-pip install --proxy http://127.0.0.1:7890 -r requirements.txt
+pip install --proxy http://127.0.0.1:8118 -r requirements.txt
 
 
 
@@ -83,7 +83,7 @@ pip install --proxy http://127.0.0.1:8118  https://github.com/openai/CLIP/archiv
 
 python launch.py
 
-python launch.py --use-cpu all --skip-torch-cuda-test --no-gradio-queue --no-half --skip-version-check --opt-split-attention --enable-insecure-extension-access --theme dark --ckpt model.ckpt --port 8888 --listen --share --api --disable-safe-unpickle --skip-prepare-environment
+python launch.py --use-cpu all --skip-torch-cuda-test --no-gradio-queue --no-half --skip-version-check --opt-split-attention --enable-insecure-extension-access --theme dark  --port 8888 --listen --share --api --disable-safe-unpickle 
 
 
 # 插件
