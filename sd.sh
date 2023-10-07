@@ -16,7 +16,8 @@ ldconfig
 cp /usr/local/openssl-1.1.1/bin/openssl /usr/bin/openssl
 openssl version
 
-vi /usr/libexec/urlgrabber-ext-down
+vi /usr/local/yum  //centos
+vi /usr/libexec/urlgrabber-ext-down //mac
 #  #! /usr/bin/python22 -> #! /usr/bin/python2
 
 
@@ -96,6 +97,8 @@ python launch.py --use-cpu all --skip-torch-cuda-test --no-gradio-queue --no-hal
 #git clone https://github.com/Mikubill/sd-webui-controlnet.git
 #git clone https://github.com/Uminosachi/sd-webui-inpaint-anything.git
 #git clone https://github.com/Gourieff/sd-webui-reactor.git
+
+#git clone https://github.com/picobyte/stable-diffusion-webui-wd14-tagger.git
 
 ##git clone https://github.com/ajay-sainy/Wav2Lip-GFPGAN.git
 
