@@ -103,5 +103,6 @@ chmod -R 755 scripts/download_models.sh
 scripts/download_models.sh
 
 
+Downloading: "https://github.com/AUTOMATIC1111/TorchDeepDanbooru/releases/download/v1/model-resnet_custom_v3.pt" to /content/stable-diffusion-webui/models/torch_deepdanbooru/model-resnet_custom_v3.pt
 
-
+Downloading: "https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base_caption_capfilt_large.pth" to /content/stable-diffusion-webui/models/BLIP/model_base_caption_capfilt_large.pth
