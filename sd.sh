@@ -91,7 +91,10 @@ python launch.py --use-cpu all --skip-torch-cuda-test --no-gradio-queue --no-hal
 
 # 插件
 
+#linux 下自行编译安装opencv 才能正常保存视频
 #git clone https://github.com/Scholar01/sd-webui-mov2mov.git
+pip install --proxy http://127.0.0.1:7890 opencv-python opencv-contrib-python
+
 #git clone https://github.com/deforum-art/deforum-for-automatic1111-webui 
 #git clone https://github.com/dtlnor/stable-diffusion-webui-localization-zh_CN
 #git clone https://github.com/Mikubill/sd-webui-controlnet.git
@@ -108,6 +111,6 @@ chmod -R 755 scripts/download_models.sh
 scripts/download_models.sh
 
 
-Downloading: "https://github.com/AUTOMATIC1111/TorchDeepDanbooru/releases/download/v1/model-resnet_custom_v3.pt" to /content/stable-diffusion-webui/models/torch_deepdanbooru/model-resnet_custom_v3.pt
+Downloading: "https://github.com/AUTOMATIC1111/TorchDeepDanbooru/releases/download/v1/model-resnet_custom_v3.pt" to stable-diffusion-webui/models/torch_deepdanbooru/model-resnet_custom_v3.pt
 
-Downloading: "https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base_caption_capfilt_large.pth" to /content/stable-diffusion-webui/models/BLIP/model_base_caption_capfilt_large.pth
+Downloading: "https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base_caption_capfilt_large.pth" to stable-diffusion-webui/models/BLIP/model_base_caption_capfilt_large.pth
