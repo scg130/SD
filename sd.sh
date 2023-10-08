@@ -9,6 +9,9 @@ cd openssl-1.1.1q
 make &&  make install
 openssl version
 
+ln -s /usr/local/openssl-1.1.1/lib/libssl.so.1.1 /usr/lib64/libssl.so.1.1
+ln -s /usr/local/openssl-1.1.1/lib/libcrypto.so.1.1 /usr/lib64/libcrypto.so.1.1
+
 vi /etc/ld.so.conf
 #include ld.so.conf.d/*.conf
 #/usr/local/openssl-1.1.1/lib/
