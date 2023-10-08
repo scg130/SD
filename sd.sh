@@ -25,11 +25,9 @@ vi /usr/libexec/urlgrabber-ext-down //mac centos
 #  #! /usr/bin/python22 -> #! /usr/bin/python2
 
 
-yum install -y openssl-devel openssl-static zlib-devel lzma tk-devel xz-devel bzip2-devel ncurses-devel gdbm-devel readline-devel sqlite-devel gcc libffi-devel zlib
+yum install mesa-libGL.x86_64 xz-devel python-backports-lzma openssl-devel openssl-static zlib-devel lzma tk-devel xz-devel bzip2-devel ncurses-devel gdbm-devel readline-devel sqlite-devel gcc libffi-devel zlib -y
 
-yum install -y mesa-libGL.x86_64
 
-yum install -y  xz-devel python-backports-lzma
 cd /usr/local/
 ll
 cd src/
