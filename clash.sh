@@ -12,3 +12,13 @@ gzip -d GeoLite2-Country.mmdb.gz
 mv GeoLite2-Country.mmdb Country.mmdb
 chmod -R 755 ./*
 #./clash -d .
+
+
+
+
+wget http://github.com/git/git/archive/refs/tags/v2.40.0.tar.gz
+    tar -zxvf v2.40.0.tar.gz 
+    cd git-2.40.0/
+    ll
+    make prefix=/usr/local/git all
+  make prefix=/usr/local/git install
