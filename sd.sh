@@ -1,5 +1,6 @@
 #/bin/bash
 #https://blog.csdn.net/qq_43610975/article/details/131031866
+#python3.10.6 必openssl1.1.1
 
 wget https://www.openssl.org/source/openssl-1.1.1q.tar.gz --no-check-certificate
 tar xf openssl-1.1.1q.tar.gz 
@@ -17,7 +18,7 @@ cp /usr/local/openssl-1.1.1/bin/openssl /usr/bin/openssl
 openssl version
 
 vi /usr/local/yum  //centos
-vi /usr/libexec/urlgrabber-ext-down //mac
+vi /usr/libexec/urlgrabber-ext-down //mac centos
 #  #! /usr/bin/python22 -> #! /usr/bin/python2
 
 
