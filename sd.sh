@@ -38,7 +38,7 @@ wget https://www.python.org/ftp/python/3.10.6/Python-3.10.6.tgz
 tar xzf Python-3.10.6.tgz 
 ll
 cd Python-3.10.6
-./configure --enable-optimizations --with-openssl=/usr/local/openssl-1.1.1 --with-openssl-rpath=auto
+./configure --prefix=/usr/local/python3.10 --enable-optimizations --with-openssl=/usr/local/openssl-1.1.1 --with-openssl-rpath=auto
 make && make install
 python --version
 pip install --proxy 127.0.0.1:7890 backports.lzma
