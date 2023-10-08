@@ -45,7 +45,7 @@ cd stable-diffusion-webui/
 cd models/Stable-diffusion/
 wget https://huggingface.co/naonovn/chilloutmix_NiPrunedFp32Fix/resolve/main/chilloutmix_NiPrunedFp32Fix.safetensors
 # chmod -R 755 webui.sh
-# python -m venv venv
+# python -m venv --without-pip venv
 # source venv/bin/activate
 pip install --proxy http://127.0.0.1:8118 urllib3==1.25.11
 pip install --proxy https://127.0.0.1:8118 -r requirements.txt
