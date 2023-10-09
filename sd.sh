@@ -1,66 +1,88 @@
-#/bin/bash
-#https://blog.csdn.net/qq_43610975/article/details/131031866
+#!/bin/bash
 #python3.10.6 必openssl1.1.1
-
+cd /usr/local/src/
 wget https://www.openssl.org/source/openssl-1.1.1q.tar.gz --no-check-certificate
 tar xf openssl-1.1.1q.tar.gz 
 cd openssl-1.1.1q
 ./config --prefix=/usr/local/openssl-1.1.1
 make &&  make install
 openssl version
-
 ln -s /usr/local/openssl-1.1.1/lib/libssl.so.1.1 /usr/lib64/libssl.so.1.1
 ln -s /usr/local/openssl-1.1.1/lib/libcrypto.so.1.1 /usr/lib64/libcrypto.so.1.1
-
-vi /etc/ld.so.conf
-#include ld.so.conf.d/*.conf
-#/usr/local/openssl-1.1.1/lib/
-
+echo "/usr/local/openssl-1.1.1/lib/" >> /etc/ld.so.conf
 ldconfig 
-cp /usr/local/openssl-1.1.1/bin/openssl /usr/bin/openssl
+rm -fr /usr/bin/openssl
+ln -s /usr/local/openssl-1.1.1/bin/openssl /usr/bin/openssl
 openssl version
 
-vi /usr/local/yum  //centos
-vi /usr/libexec/urlgrabber-ext-down //mac centos
-#  #! /usr/bin/python22 -> #! /usr/bin/python2
+yum install mesa-libGL.x86_64 xz-devel python-backports-lzma openssl-devel openssl-static zlib-devel lzma tk-devel xz-devel bzip2-devel ncurses-devel gdbm-devel readline-devel sqlite-devel gcc libffi-devel zlib curl-devel -y
+
+cd /usr/local/src/
+wget http://github.com/git/git/archive/refs/tags/v2.40.0.tar.gz
+tar -zxvf v2.40.0.tar.gz 
+cd git-2.40.0/
+make prefix=/usr/local/git all
+make prefix=/usr/local/git install
+rm -fr /usr/bin/git
+ln -s /usr/local/git/bin/git /usr/bin/git
 
 
-yum install mesa-libGL.x86_64 xz-devel python-backports-lzma openssl-devel openssl-static zlib-devel lzma tk-devel xz-devel bzip2-devel ncurses-devel gdbm-devel readline-devel sqlite-devel gcc libffi-devel zlib -y
-
-
-cd /usr/local/
-ll
-cd src/
-ll
+cd /usr/local/src/
 wget https://www.python.org/ftp/python/3.10.6/Python-3.10.6.tgz
 tar xzf Python-3.10.6.tgz 
-ll
 cd Python-3.10.6
 ./configure --prefix=/usr/local/python3.10 --enable-optimizations --with-openssl=/usr/local/openssl-1.1.1 --with-openssl-rpath=auto
 make && make install
 python --version
-pip install --proxy 127.0.0.1:7890 backports.lzma
+
+rm -fr /usr/bin/python
+ln -s /usr/local/python3.10/bin/python3.10 /usr/bin/python
+rm -fr /home/vipuser/miniconda3/bin/python
+ln -s /usr/local/python3.10/bin/python3.10 /home/vipuser/miniconda3/bin/python
+rm -fr /home/vipuser/miniconda3/bin/pip
+ln -s /usr/local/python3.10/bin/pip3 /home/vipuser/miniconda3/bin/pip
+rm -fr /opt/miniconda3/bin/pip
+ln -s /usr/local/python3.10/bin/pip3 /opt/miniconda3/bin/pip
+pip install --upgrade pip
+
+echo '是否覆盖文件内容y/n'
+read flag
+
+if [ "$flag" = 'y' ];then
+    sed -i 's/\/usr\/bin\/python/\/usr\/bin\/python2.7/g' /usr/bin/yum
+    sed -i 's/\/usr\/bin\/python/\/usr\/bin\/python2.7/g' /usr/libexec/urlgrabber-ext-down
+elif [ "$flag" = 'n' ];then
+    exit
+else
+    exit
+fi
+
+pip install  backports.lzma
+
 
 cd /usr/local/src
 git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
 cd stable-diffusion-webui/
+chmod -R 755 ./*
+python -m venv venv
 cd models/Stable-diffusion/
 wget https://huggingface.co/naonovn/chilloutmix_NiPrunedFp32Fix/resolve/main/chilloutmix_NiPrunedFp32Fix.safetensors
-# chmod -R 755 webui.sh
-# python -m venv --without-pip venv
-# source venv/bin/activate
-pip install --proxy http://127.0.0.1:8118 urllib3==1.25.11
-pip install --proxy https://127.0.0.1:8118 -r requirements.txt
+cd ../../
+# vi modules/launch_utils.py 
+# -C 并替换成 --exec-path
+source venv/bin/activate
+pip install -r requirements.txt
 
+
+
+
+#pip install  urllib3==1.25.11
 
 git clone https://github.com/xinntao/BasicSR.git
 cd BasicSR/
-pip install --proxy http://127.0.0.1:8118 -r requirements.txt
-
-
+pip install  -r requirements.txt
 
 #vi /usr/local/lib/python3.10/site-packages/basicsr/utils/misc.py
-
 # import torch
 # def get_device():
 #     if torch.cuda.is_available():
@@ -72,14 +94,13 @@ pip install --proxy http://127.0.0.1:8118 -r requirements.txt
 #     return torch.cuda.is_available()
 
 
-pip install torch==1.11.0+cu113 torchvision==0.12.0+cu113 torchaudio===0.11.0+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
+# pip install torch==1.11.0+cu113 torchvision==0.12.0+cu113 torchaudio===0.11.0+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
 
 # pip install pytorch==1.13.1 torchvision==0.14.1 torchaudio==0.13.1 pytorch-cuda=11.6 -c pytorch -c nvidia
 
 pip install --proxy http://127.0.0.1:8118  https://github.com/openai/CLIP/archive/d50d76daa670286dd6cacf3bcd80b5e4823fc8e1.zip --prefer-binary
 
-# vi modules/launch_utils.py 
-# -C 并替换成 --exec-path
+
 
 # vi launch.py
 # #新增
