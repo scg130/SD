@@ -45,14 +45,14 @@ rm -fr /opt/miniconda3/bin/pip
 ln -s /usr/local/python3.10/bin/pip3 /opt/miniconda3/bin/pip
 pip install --upgrade pip
 
-echo '是否覆盖文件内容y/n'
+echo '第一次安装y;重复安装n;是否覆盖文件内容y/n'
 read flag
 
 if [ "$flag" = 'y' ];then
     sed -i 's/\/usr\/bin\/python/\/usr\/bin\/python2.7/g' /usr/bin/yum
     sed -i 's/\/usr\/bin\/python/\/usr\/bin\/python2.7/g' /usr/libexec/urlgrabber-ext-down
 elif [ "$flag" = 'n' ];then
-    exit
+    echo 'pass'
 else
     exit
 fi
@@ -68,55 +68,70 @@ python -m venv venv
 cd models/Stable-diffusion/
 wget https://huggingface.co/naonovn/chilloutmix_NiPrunedFp32Fix/resolve/main/chilloutmix_NiPrunedFp32Fix.safetensors
 cd ../../
+
+sed -i 's/-C/--exec-path/g' modules/launch_utils.py 
 # vi modules/launch_utils.py 
 # -C 并替换成 --exec-path
 source venv/bin/activate
+
+
+echo '第一次安装y;重复安装n;是否写入文件内容y/n'
+read append
+
+if [ "$append" = 'y' ];then
+    echo '
+def get_device():
+    if torch.cuda.is_available():
+        return torch.device("cuda")
+    else:
+        return torch.device("cpu")
+
+def gpu_is_available():
+    return torch.cuda.is_available()
+' >> /usr/local/src/stable-diffusion-webui/venv/lib/python3.10/site-packages/basicsr/utils/misc.py
+elif [ "$append" = 'n' ];then
+    echo 'pass'
+else
+    exit
+fi
+
+pip install --upgrade pip
 pip install -r requirements.txt
+# mac
+#python launch.py --use-cpu all --skip-torch-cuda-test --no-gradio-queue --no-half --skip-version-check --opt-split-attention --enable-insecure-extension-access --theme dark  --port 8888 --listen --share --api --disable-safe-unpickle
 
+#centos
+python launch.py --no-gradio-queue --no-half --skip-version-check --opt-split-attention --enable-insecure-extension-access --theme dark  --port 8888 --listen --share --api --disable-safe-unpickle
 
+cd /usr/local/src/stable-diffusion-webui/models/torch_deepdanbooru/
+wget https://github.com/AUTOMATIC1111/TorchDeepDanbooru/releases/download/v1/model-resnet_custom_v3.pt
+cd /usr/local/src/stable-diffusion-webui/models/BLIP/
+wget --no-check-certificate https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base_caption_capfilt_large.pth
+cd /usr/local/src/stable-diffusion-webui/
 
+#pip install  urllib3==1.25.11   mac
 
-#pip install  urllib3==1.25.11
-
-git clone https://github.com/xinntao/BasicSR.git
-cd BasicSR/
-pip install  -r requirements.txt
-
-#vi /usr/local/lib/python3.10/site-packages/basicsr/utils/misc.py
-# import torch
-# def get_device():
-#     if torch.cuda.is_available():
-#         return torch.device("cuda")
-#     else:
-#         return torch.device("cpu")
-
-# def gpu_is_available():
-#     return torch.cuda.is_available()
-
+# git clone https://github.com/xinntao/BasicSR.git
+# cd BasicSR/
 
 # pip install torch==1.11.0+cu113 torchvision==0.12.0+cu113 torchaudio===0.11.0+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
 
 # pip install pytorch==1.13.1 torchvision==0.14.1 torchaudio==0.13.1 pytorch-cuda=11.6 -c pytorch -c nvidia
 
-pip install --proxy http://127.0.0.1:8118  https://github.com/openai/CLIP/archive/d50d76daa670286dd6cacf3bcd80b5e4823fc8e1.zip --prefer-binary
+# mac
+# pip install --proxy http://127.0.0.1:8118  https://github.com/openai/CLIP/archive/d50d76daa670286dd6cacf3bcd80b5e4823fc8e1.zip --prefer-binary
 
-
-
-# vi launch.py
+# mac
+# vi launch.py   
 # #新增
 # import ssl
 # ssl._create_default_https_context = ssl._create_unverified_context
-
-python launch.py
-
-python launch.py --use-cpu all --skip-torch-cuda-test --no-gradio-queue --no-half --skip-version-check --opt-split-attention --enable-insecure-extension-access --theme dark  --port 8888 --listen --share --api --disable-safe-unpickle 
-
 
 # 插件
 
 #linux 下自行编译安装opencv 才能正常保存视频
 #git clone https://github.com/Scholar01/sd-webui-mov2mov.git
-pip install --proxy http://127.0.0.1:7890 opencv-python opencv-contrib-python
+# pip install --proxy http://127.0.0.1:7890 opencv-python opencv-contrib-python
 
 #git clone https://github.com/deforum-art/deforum-for-automatic1111-webui 
 #git clone https://github.com/dtlnor/stable-diffusion-webui-localization-zh_CN
@@ -129,11 +144,6 @@ pip install --proxy http://127.0.0.1:7890 opencv-python opencv-contrib-python
 ##git clone https://github.com/ajay-sainy/Wav2Lip-GFPGAN.git
 
 #git clone https://github.com/OpenTalker/SadTalker
-cd extensions/SadTalker
-chmod -R 755 scripts/download_models.sh
-scripts/download_models.sh
-
-
-Downloading: "https://github.com/AUTOMATIC1111/TorchDeepDanbooru/releases/download/v1/model-resnet_custom_v3.pt" to stable-diffusion-webui/models/torch_deepdanbooru/model-resnet_custom_v3.pt
-
-Downloading: "https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base_caption_capfilt_large.pth" to stable-diffusion-webui/models/BLIP/model_base_caption_capfilt_large.pth
+# cd extensions/SadTalker
+# chmod -R 755 scripts/download_models.sh
+# scripts/download_models.sh
