@@ -112,6 +112,7 @@ wget https://github.com/byzod/a1111-sd-webui-tagcomplete-CN/blob/main/tags/Tags-
 wget https://github.com/byzod/a1111-sd-webui-tagcomplete-CN/blob/main/tags/config.json
 cd /usr/local/src/stable-diffusion-webui/extensions
 git clone https://github.com/civitai/sd_civitai_extension.git
+git clone https://github.com/butaixianran/Stable-Diffusion-Webui-Civitai-Helper.git
 cd /usr/local/src/stable-diffusion-webui/extensions
 git clone https://github.com/Mikubill/sd-webui-controlnet.git
 cd /usr/local/src/stable-diffusion-webui/extensions/sd-webui-controlnet/models
