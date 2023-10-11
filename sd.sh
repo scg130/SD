@@ -75,7 +75,7 @@ sed -i 's/-C/--exec-path/g' modules/launch_utils.py
 source venv/bin/activate
 
 pip install --upgrade pip
-pip install -r requirements.txt
+pip install --proxy http://127.0.0.1:7890 -r requirements.txt
 
 echo '第一次安装y;重复安装n;是否写入文件内容y/n'
 read append
@@ -130,9 +130,6 @@ python launch.py --no-gradio-queue --no-half --skip-version-check --opt-split-at
 
 
 #pip install  urllib3==1.25.11   mac
-
-# git clone https://github.com/xinntao/BasicSR.git
-# cd BasicSR/
 
 # pip install torch==1.11.0+cu113 torchvision==0.12.0+cu113 torchaudio===0.11.0+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
 
