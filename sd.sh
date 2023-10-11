@@ -43,6 +43,7 @@ rm -fr /home/vipuser/miniconda3/bin/pip
 ln -s /usr/local/python3.10/bin/pip3 /home/vipuser/miniconda3/bin/pip
 rm -fr /opt/miniconda3/bin/pip
 ln -s /usr/local/python3.10/bin/pip3 /opt/miniconda3/bin/pip
+ln -s /usr/local/python3.10/bin/pip3 /usr/bin/pip
 pip install --upgrade pip
 
 echo '第一次安装y;重复安装n;是否覆盖文件内容y/n'
