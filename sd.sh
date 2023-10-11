@@ -97,17 +97,38 @@ fi
 
 pip install --upgrade pip
 pip install -r requirements.txt
-# mac
-#python launch.py --use-cpu all --skip-torch-cuda-test --no-gradio-queue --no-half --skip-version-check --opt-split-attention --enable-insecure-extension-access --theme dark  --port 8888 --listen --share --api --disable-safe-unpickle
+
+mkdir -p /usr/local/src/stable-diffusion-webui/models/torch_deepdanbooru/
+cd /usr/local/src/stable-diffusion-webui/models/torch_deepdanbooru/
+wget https://github.com/AUTOMATIC1111/TorchDeepDanbooru/releases/download/v1/model-resnet_custom_v3.pt
+mkdir -p /usr/local/src/stable-diffusion-webui/models/BLIP/
+cd /usr/local/src/stable-diffusion-webui/models/BLIP/
+wget --no-check-certificate https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base_caption_capfilt_large.pth
+cd /usr/local/src/stable-diffusion-webui/extensions
+git clone https://github.com/DominikDoom/a1111-sd-webui-tagcomplete.git
+cd /usr/local/src/stable-diffusion-webui/extensions/a1111-sd-webui-tagcomplete/tags
+wget https://github.com/byzod/a1111-sd-webui-tagcomplete-CN/blob/main/tags/Tags-zh-full-pack.csv
+wget https://github.com/byzod/a1111-sd-webui-tagcomplete-CN/blob/main/tags/config.json
+cd /usr/local/src/stable-diffusion-webui/extensions
+git clone https://github.com/civitai/sd_civitai_extension.git
+cd /usr/local/src/stable-diffusion-webui/extensions
+git clone https://github.com/Mikubill/sd-webui-controlnet.git
+cd /usr/local/src/stable-diffusion-webui/extensions/sd-webui-controlnet/models
+wget https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_openpose.pth
+wget https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_openpose.yaml
+
+
+cd /usr/local/src/stable-diffusion-webui/
 
 #centos
 python launch.py --no-gradio-queue --no-half --skip-version-check --opt-split-attention --enable-insecure-extension-access --theme dark  --port 8888 --listen --share --api --disable-safe-unpickle
 
-cd /usr/local/src/stable-diffusion-webui/models/torch_deepdanbooru/
-wget https://github.com/AUTOMATIC1111/TorchDeepDanbooru/releases/download/v1/model-resnet_custom_v3.pt
-cd /usr/local/src/stable-diffusion-webui/models/BLIP/
-wget --no-check-certificate https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base_caption_capfilt_large.pth
-cd /usr/local/src/stable-diffusion-webui/
+# mac
+#python launch.py --use-cpu all --skip-torch-cuda-test --no-gradio-queue --no-half --skip-version-check --opt-split-attention --enable-insecure-extension-access --theme dark  --port 8888 --listen --share --api --disable-safe-unpickle
+
+
+
+
 
 #pip install  urllib3==1.25.11   mac
 
