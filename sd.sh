@@ -77,6 +77,7 @@ source venv/bin/activate
 
 pip install --upgrade pip
 pip install --proxy http://127.0.0.1:7890 -r requirements.txt
+pip install dctorch
 
 echo '第一次安装y;重复安装n;是否写入文件内容y/n'
 read append
