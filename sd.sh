@@ -136,6 +136,7 @@ cd /usr/local/src/stable-diffusion-webui/
 #git clone https://github.com/deforum-art/deforum-for-automatic1111-webui 
 #git clone https://github.com/dtlnor/stable-diffusion-webui-localization-zh_CN
 
+#git clone https://github.com/DominikDoom/a1111-sd-webui-tagcomplete.git
 #git clone https://github.com/civitai/sd_civitai_extension.git
 #git clone https://github.com/Mikubill/sd-webui-controlnet.git
 #wget https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_openpose.pth
