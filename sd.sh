@@ -93,6 +93,10 @@ def get_device():
 def gpu_is_available():
     return torch.cuda.is_available()
 ' >> /usr/local/src/stable-diffusion-webui/venv/lib/python3.10/site-packages/basicsr/utils/misc.py
+
+echo "import ssl
+ssl._create_default_https_context = ssl._create_unverified_context" | cat - launch.py  > a.tmp && mv -f a.tmp launch.py 
+
 elif [ "$append" = 'n' ];then
     echo 'pass'
 else
