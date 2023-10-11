@@ -74,6 +74,8 @@ sed -i 's/-C/--exec-path/g' modules/launch_utils.py
 # -C 并替换成 --exec-path
 source venv/bin/activate
 
+pip install --upgrade pip
+pip install -r requirements.txt
 
 echo '第一次安装y;重复安装n;是否写入文件内容y/n'
 read append
@@ -94,9 +96,6 @@ elif [ "$append" = 'n' ];then
 else
     exit
 fi
-
-pip install --upgrade pip
-pip install -r requirements.txt
 
 mkdir -p /usr/local/src/stable-diffusion-webui/models/torch_deepdanbooru/
 cd /usr/local/src/stable-diffusion-webui/models/torch_deepdanbooru/
