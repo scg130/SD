@@ -137,8 +137,12 @@ cd /usr/local/src/stable-diffusion-webui/
 #git clone https://github.com/dtlnor/stable-diffusion-webui-localization-zh_CN
 
 #git clone https://github.com/DominikDoom/a1111-sd-webui-tagcomplete.git
+# cd /usr/local/src/stable-diffusion-webui/extensions/a1111-sd-webui-tagcomplete/tags
+# wget https://github.com/byzod/a1111-sd-webui-tagcomplete-CN/blob/main/tags/Tags-zh-full-pack.csv
+# wget https://github.com/byzod/a1111-sd-webui-tagcomplete-CN/blob/main/tags/config.json
 #git clone https://github.com/civitai/sd_civitai_extension.git
 #git clone https://github.com/Mikubill/sd-webui-controlnet.git
+# cd /usr/local/src/stable-diffusion-webui/extensions/sd-webui-controlnet/models
 #wget https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_openpose.pth
 #wget https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_openpose.yaml
 
