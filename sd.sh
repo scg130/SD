@@ -1,88 +1,115 @@
 #!/bin/bash
 #python3.10.6 必openssl1.1.1
-cd /usr/local/src/
-wget https://www.openssl.org/source/openssl-1.1.1q.tar.gz --no-check-certificate
-tar xf openssl-1.1.1q.tar.gz 
-cd openssl-1.1.1q
-./config --prefix=/usr/local/openssl-1.1.1
-make &&  make install
-openssl version
-ln -s /usr/local/openssl-1.1.1/lib/libssl.so.1.1 /usr/lib64/libssl.so.1.1
-ln -s /usr/local/openssl-1.1.1/lib/libcrypto.so.1.1 /usr/lib64/libcrypto.so.1.1
-echo "/usr/local/openssl-1.1.1/lib/" >> /etc/ld.so.conf
-ldconfig 
-rm -fr /usr/bin/openssl
-ln -s /usr/local/openssl-1.1.1/bin/openssl /usr/bin/openssl
-openssl version
+echo '是否重新安装openssl1.1.1。y/n'
+read flagssl
 
-yum install mesa-libGL.x86_64 xz-devel python-backports-lzma openssl-devel openssl-static zlib-devel lzma tk-devel xz-devel bzip2-devel ncurses-devel gdbm-devel readline-devel sqlite-devel gcc libffi-devel zlib curl-devel -y
-
-cd /usr/local/src/
-wget http://github.com/git/git/archive/refs/tags/v2.40.0.tar.gz
-tar -zxvf v2.40.0.tar.gz 
-cd git-2.40.0/
-make prefix=/usr/local/git all
-make prefix=/usr/local/git install
-rm -fr /usr/bin/git
-ln -s /usr/local/git/bin/git /usr/bin/git
-
-
-cd /usr/local/src/
-wget https://www.python.org/ftp/python/3.10.6/Python-3.10.6.tgz
-tar xzf Python-3.10.6.tgz 
-cd Python-3.10.6
-./configure --prefix=/usr/local/python3.10 --enable-optimizations --with-openssl=/usr/local/openssl-1.1.1 --with-openssl-rpath=auto
-make && make install
-python --version
-
-rm -fr /usr/bin/python
-ln -s /usr/local/python3.10/bin/python3.10 /usr/bin/python
-rm -fr /home/vipuser/miniconda3/bin/python
-ln -s /usr/local/python3.10/bin/python3.10 /home/vipuser/miniconda3/bin/python
-rm -fr /home/vipuser/miniconda3/bin/pip
-ln -s /usr/local/python3.10/bin/pip3 /home/vipuser/miniconda3/bin/pip
-rm -fr /opt/miniconda3/bin/pip
-ln -s /usr/local/python3.10/bin/pip3 /opt/miniconda3/bin/pip
-ln -s /usr/local/python3.10/bin/pip3 /usr/bin/pip
-pip install --upgrade pip
-
-echo '第一次安装y;重复安装n;是否覆盖文件内容y/n'
-read flag
-
-if [ "$flag" = 'y' ];then
-    sed -i 's/\/usr\/bin\/python/\/usr\/bin\/python2.7/g' /usr/bin/yum
-    sed -i 's/\/usr\/bin\/python/\/usr\/bin\/python2.7/g' /usr/libexec/urlgrabber-ext-down
-elif [ "$flag" = 'n' ];then
+if [ "$flagssl" = 'y' ];then
+    yum install mesa-libGL.x86_64 xz-devel python-backports-lzma openssl-devel openssl-static zlib-devel lzma tk-devel xz-devel bzip2-devel ncurses-devel gdbm-devel readline-devel sqlite-devel gcc libffi-devel zlib curl-devel -y
+    cd /usr/local/src/
+    wget https://www.openssl.org/source/openssl-1.1.1q.tar.gz --no-check-certificate
+    tar xf openssl-1.1.1q.tar.gz 
+    cd openssl-1.1.1q
+    ./config --prefix=/usr/local/openssl-1.1.1
+    make &&  make install
+    openssl version
+    ln -s /usr/local/openssl-1.1.1/lib/libssl.so.1.1 /usr/lib64/libssl.so.1.1
+    ln -s /usr/local/openssl-1.1.1/lib/libcrypto.so.1.1 /usr/lib64/libcrypto.so.1.1
+    echo "/usr/local/openssl-1.1.1/lib/" >> /etc/ld.so.conf
+    ldconfig 
+    rm -fr /usr/bin/openssl
+    ln -s /usr/local/openssl-1.1.1/bin/openssl /usr/bin/openssl
+    openssl version
+elif [ "$flagssl" = 'n' ];then
     echo 'pass'
 else
     exit
 fi
 
-pip install  backports.lzma
+echo '是否重新安装git。y/n'
+read flaggit
+
+if [ "$flaggit" = 'y' ];then
+    cd /usr/local/src/
+    wget http://github.com/git/git/archive/refs/tags/v2.40.0.tar.gz
+    tar -zxvf v2.40.0.tar.gz 
+    cd git-2.40.0/
+    make prefix=/usr/local/git all
+    make prefix=/usr/local/git install
+    rm -fr /usr/bin/git
+    ln -s /usr/local/git/bin/git /usr/bin/git
+elif [ "$flaggit" = 'n' ];then
+    echo 'pass'
+else
+    exit
+fi
 
 
-cd /usr/local/src
-git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
-cd stable-diffusion-webui/
-chmod -R 755 ./*
-python -m venv venv
-cd models/Stable-diffusion/
-wget https://huggingface.co/naonovn/chilloutmix_NiPrunedFp32Fix/resolve/main/chilloutmix_NiPrunedFp32Fix.safetensors
-cd ../../
 
-sed -i 's/-C/--exec-path/g' modules/launch_utils.py 
-# vi modules/launch_utils.py 
-# -C 并替换成 --exec-path
-source venv/bin/activate
+echo '是否重新安装python3.10.6。y/n'
+read flagpython
 
-pip install --upgrade pip
-pip install --proxy http://127.0.0.1:7890 -r requirements.txt
-pip install dctorch
+if [ "$flagpython" = 'y' ];then
+    cd /usr/local/src/
+    wget https://www.python.org/ftp/python/3.10.6/Python-3.10.6.tgz
+    tar xzf Python-3.10.6.tgz 
+    cd Python-3.10.6
+    ./configure --prefix=/usr/local/python3.10 --enable-optimizations --with-openssl=/usr/local/openssl-1.1.1 --with-openssl-rpath=auto
+    make && make install
+    python --version
 
-echo '第一次安装y;重复安装n;是否写入文件内容y/n'
+    rm -fr /usr/bin/python
+    ln -s /usr/local/python3.10/bin/python3.10 /usr/bin/python
+    rm -fr /home/vipuser/miniconda3/bin/python
+    ln -s /usr/local/python3.10/bin/python3.10 /home/vipuser/miniconda3/bin/python
+    rm -fr /home/vipuser/miniconda3/bin/pip
+    ln -s /usr/local/python3.10/bin/pip3 /home/vipuser/miniconda3/bin/pip
+    rm -fr /opt/miniconda3/bin/pip
+    ln -s /usr/local/python3.10/bin/pip3 /opt/miniconda3/bin/pip
+    ln -s /usr/local/python3.10/bin/pip3 /usr/bin/pip
+
+    sed -i 's/\/usr\/bin\/python/\/usr\/bin\/python2.7/g' /usr/bin/yum
+    sed -i 's/\/usr\/bin\/python/\/usr\/bin\/python2.7/g' /usr/libexec/urlgrabber-ext-down
+
+    pip install --upgrade pip
+elif [ "$flagpython" = 'n' ];then
+    echo 'pass'
+else
+    exit
+fi
+
+echo '是否代理本机7890。y/n'
+read flagClash
+
+if [ "$flagClash" = 'y' ];then
+    export http_proxy=http://127.0.0.1:7890
+    export https_proxy=http://127.0.0.1:7890
+    source /etc/profile
+elif [ "$flagClash" = 'n' ];then
+    echo 'pass'
+else
+    exit
+fi
+
+echo '是否重新安装stable diffusion webui。y/n'
 read append
-
 if [ "$append" = 'y' ];then
+    pip install  backports.lzma
+    cd /usr/local/src
+    git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
+    cd stable-diffusion-webui/
+    chmod -R 755 ./*
+    python -m venv venv
+    cd models/Stable-diffusion/
+    wget https://huggingface.co/naonovn/chilloutmix_NiPrunedFp32Fix/resolve/main/chilloutmix_NiPrunedFp32Fix.safetensors
+    cd ../../
+
+    sed -i 's/-C/--exec-path/g' modules/launch_utils.py 
+    # vi modules/launch_utils.py 
+    # -C 并替换成 --exec-path
+    source venv/bin/activate
+    pip install --upgrade pip
+    pip install --proxy http://127.0.0.1:7890 -r requirements.txt
+    pip install dctorch
     echo '
 def get_device():
     if torch.cuda.is_available():
@@ -94,35 +121,32 @@ def gpu_is_available():
     return torch.cuda.is_available()
 ' >> /usr/local/src/stable-diffusion-webui/venv/lib/python3.10/site-packages/basicsr/utils/misc.py
 
-echo "import ssl
+    echo "import ssl
 ssl._create_default_https_context = ssl._create_unverified_context" | cat - launch.py  > a.tmp && mv -f a.tmp launch.py 
-
+    mkdir -p /usr/local/src/stable-diffusion-webui/models/torch_deepdanbooru/
+    cd /usr/local/src/stable-diffusion-webui/models/torch_deepdanbooru/
+    wget https://github.com/AUTOMATIC1111/TorchDeepDanbooru/releases/download/v1/model-resnet_custom_v3.pt
+    mkdir -p /usr/local/src/stable-diffusion-webui/models/BLIP/
+    cd /usr/local/src/stable-diffusion-webui/models/BLIP/
+    wget --no-check-certificate https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base_caption_capfilt_large.pth
+    cd /usr/local/src/stable-diffusion-webui/extensions
+    git clone https://github.com/DominikDoom/a1111-sd-webui-tagcomplete.git
+    cd /usr/local/src/stable-diffusion-webui/extensions/a1111-sd-webui-tagcomplete/tags
+    wget https://github.com/byzod/a1111-sd-webui-tagcomplete-CN/blob/main/tags/Tags-zh-full-pack.csv
+    wget https://github.com/byzod/a1111-sd-webui-tagcomplete-CN/blob/main/tags/config.json
+    cd /usr/local/src/stable-diffusion-webui/extensions
+    git clone https://github.com/civitai/sd_civitai_extension.git
+    git clone https://github.com/butaixianran/Stable-Diffusion-Webui-Civitai-Helper.git
+    cd /usr/local/src/stable-diffusion-webui/extensions
+    git clone https://github.com/Mikubill/sd-webui-controlnet.git
+    cd /usr/local/src/stable-diffusion-webui/extensions/sd-webui-controlnet/models
+    wget https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_openpose.pth
+    wget https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_openpose.yaml
 elif [ "$append" = 'n' ];then
     echo 'pass'
 else
     exit
 fi
-
-mkdir -p /usr/local/src/stable-diffusion-webui/models/torch_deepdanbooru/
-cd /usr/local/src/stable-diffusion-webui/models/torch_deepdanbooru/
-wget https://github.com/AUTOMATIC1111/TorchDeepDanbooru/releases/download/v1/model-resnet_custom_v3.pt
-mkdir -p /usr/local/src/stable-diffusion-webui/models/BLIP/
-cd /usr/local/src/stable-diffusion-webui/models/BLIP/
-wget --no-check-certificate https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base_caption_capfilt_large.pth
-cd /usr/local/src/stable-diffusion-webui/extensions
-git clone https://github.com/DominikDoom/a1111-sd-webui-tagcomplete.git
-cd /usr/local/src/stable-diffusion-webui/extensions/a1111-sd-webui-tagcomplete/tags
-wget https://github.com/byzod/a1111-sd-webui-tagcomplete-CN/blob/main/tags/Tags-zh-full-pack.csv
-wget https://github.com/byzod/a1111-sd-webui-tagcomplete-CN/blob/main/tags/config.json
-cd /usr/local/src/stable-diffusion-webui/extensions
-git clone https://github.com/civitai/sd_civitai_extension.git
-git clone https://github.com/butaixianran/Stable-Diffusion-Webui-Civitai-Helper.git
-cd /usr/local/src/stable-diffusion-webui/extensions
-git clone https://github.com/Mikubill/sd-webui-controlnet.git
-cd /usr/local/src/stable-diffusion-webui/extensions/sd-webui-controlnet/models
-wget https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_openpose.pth
-wget https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_openpose.yaml
-
 
 cd /usr/local/src/stable-diffusion-webui/
 
