@@ -15,7 +15,6 @@ if [ "$flagssl" = 'y' ];then
     ln -s /usr/local/openssl-1.1.1/lib/libssl.so.1.1 /usr/lib64/libssl.so.1.1
     ln -s /usr/local/openssl-1.1.1/lib/libcrypto.so.1.1 /usr/lib64/libcrypto.so.1.1
     echo "/usr/local/openssl-1.1.1/lib/" >> /etc/ld.so.conf
-    ldconfig 
     rm -fr /usr/bin/openssl
     ln -s /usr/local/openssl-1.1.1/bin/openssl /usr/bin/openssl
     openssl version
