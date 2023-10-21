@@ -156,9 +156,10 @@ cd /usr/local/src/stable-diffusion-webui/
 # mkidr -p /usr/local/src/stable-diffusion-webui/train/meidusha/old
 # cd /usr/local/src/stable-diffusion-webui/train/meidusha/old
 # ./dataset_download.sh && rm -fr dataset_download.sh
+# 可以更改new 里面文件夹图片对应txt文件里面的 关键词 让lora 后期效果更好
 # /usr/local/src/stable-diffusion-webui/train/meidusha/new
 
-python launch.py --no-gradio-queue --no-half --skip-version-check --opt-split-attention --enable-insecure-extension-access --theme dark  --port 8888 --listen --share --api --disable-safe-unpickle
+python launch.py  --no-gradio-queue --no-half --skip-version-check --opt-split-attention --enable-insecure-extension-access --theme dark  --port 8888 --listen --share --api --disable-safe-unpickle
 
 # mac
 #python launch.py --use-cpu all --skip-torch-cuda-test --no-gradio-queue --no-half --skip-version-check --opt-split-attention --enable-insecure-extension-access --theme dark  --port 8888 --listen --share --api --disable-safe-unpickle
