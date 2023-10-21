@@ -152,8 +152,12 @@ cd /usr/local/src/stable-diffusion-webui/
 #centos
 # export CUDA_CACHE_MAXSIZE=2147483648
 # export PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:32
-# /usr/local/src/stable-diffusion-webui/models/VAE-approx
+# /usr/local/src/stable-diffusion-webui/models/VAE-approx && mv model.pt 1model.pt
+# mkidr -p /usr/local/src/stable-diffusion-webui/train/meidusha/old
+# cd /usr/local/src/stable-diffusion-webui/train/meidusha/old
+# ./dataset_download.sh && rm -fr dataset_download.sh
 # /usr/local/src/stable-diffusion-webui/train/meidusha/new
+
 python launch.py --no-gradio-queue --no-half --skip-version-check --opt-split-attention --enable-insecure-extension-access --theme dark  --port 8888 --listen --share --api --disable-safe-unpickle
 
 # mac
