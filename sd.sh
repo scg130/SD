@@ -80,8 +80,10 @@ echo '是否代理本机7890。y/n'
 read flagClash
 
 if [ "$flagClash" = 'y' ];then
+    echo '
     export http_proxy=http://127.0.0.1:7890
     export https_proxy=http://127.0.0.1:7890
+    ' >> /etc/profile
     source /etc/profile
 elif [ "$flagClash" = 'n' ];then
     echo 'pass'
@@ -109,6 +111,7 @@ if [ "$append" = 'y' ];then
     pip install --upgrade pip
     pip install --proxy http://127.0.0.1:7890 -r requirements.txt
     pip install dctorch
+    pip install pyinstaller
     echo '
 def get_device():
     if torch.cuda.is_available():
@@ -138,6 +141,11 @@ ssl._create_default_https_context = ssl._create_unverified_context" | cat - laun
     git clone https://github.com/butaixianran/Stable-Diffusion-Webui-Civitai-Helper.git
     cd /usr/local/src/stable-diffusion-webui/extensions
     git clone https://github.com/Mikubill/sd-webui-controlnet.git
+    git clone https://github.com/Scholar01/sd-webui-mov2mov.git
+    sed -i 's/avc1/mp4v/g' sd-webui-mov2mov/scripts/m2m_util.py 
+    git clone https://github.com/Scholar01/sd-webui-bg-mask.git
+    git clone https://github.com/ClockZinc/sd-webui-IS-NET-pro.git
+    git clone https://github.com/huchenlei/sd-webui-openpose-editor.git
     cd /usr/local/src/stable-diffusion-webui/extensions/sd-webui-controlnet/models
     wget https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_openpose.pth
     wget https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_openpose.yaml
@@ -213,3 +221,22 @@ python launch.py  --no-gradio-queue --no-half --skip-version-check --opt-split-a
 # cd extensions/SadTalker
 # chmod -R 755 scripts/download_models.sh
 # scripts/download_models.sh
+
+
+
+
+# wget https://ffmpeg.org/releases/ffmpeg-6.0.tar.gz --no-check-certificate
+# tar -zxvf ffmpeg-6.0.tar.gz
+# yum install yasm -y
+# yum install gcc
+# cd ffmpeg-6.0
+
+
+# ./configure --enable-shared --enable-avresample --prefix=/usr/local/ffmpeg --enable-nonfree --enable-gpl --enable-libx264 --enable-encoder=libx264
+
+# make && make install
+
+
+
+
+
