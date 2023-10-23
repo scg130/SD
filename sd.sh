@@ -4,6 +4,9 @@ echo '是否重新安装openssl1.1.1。y/n'
 read flagssl
 
 if [ "$flagssl" = 'y' ];then
+    sudo rpm -Uvh https://download1.rpmfusion.org/free/el/rpmfusion-free-release-7.noarch.rpm
+    sudo rpm -Uvh https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-7.noarch.rpm
+    yum install ffmpeg -y
     yum install mesa-libGL.x86_64 xz-devel python-backports-lzma openssl-devel openssl-static zlib-devel lzma tk-devel xz-devel bzip2-devel ncurses-devel gdbm-devel readline-devel sqlite-devel gcc libffi-devel zlib curl-devel -y
     cd /usr/local/src/
     wget https://www.openssl.org/source/openssl-1.1.1q.tar.gz --no-check-certificate
@@ -42,6 +45,21 @@ else
     exit
 fi
 
+
+echo '是否重新安装ebsynth。y/n'
+read ebsynth
+
+if [ "$ebsynth" = 'y' ];then
+    cd /usr/local/src 
+    git clone https://github.com/jamriska/ebsynth
+    cd ebsynth/
+    ./build-linux-cpu_only.sh
+    ln -s /usr/local/src/ebsynth/bin/ebsynth /usr/bin/ebsynth
+elif [ "$ebsynth" = 'n' ];then
+    echo 'pass'
+else
+    exit
+fi
 
 
 echo '是否重新安装python3.10.6。y/n'
@@ -111,6 +129,8 @@ if [ "$append" = 'y' ];then
     pip install --upgrade pip
     pip install --proxy http://127.0.0.1:7890 -r requirements.txt
     pip install dctorch
+    pip install opencv-python-rolling==4.7.0.72
+    pip install transparent-background
     pip install pyinstaller
     echo '
 def get_device():
@@ -146,6 +166,9 @@ ssl._create_default_https_context = ssl._create_unverified_context" | cat - laun
     git clone https://github.com/Scholar01/sd-webui-bg-mask.git
     git clone https://github.com/ClockZinc/sd-webui-IS-NET-pro.git
     git clone https://github.com/huchenlei/sd-webui-openpose-editor.git
+    git clone https://github.com/Artiprocher/sd-webui-fastblend.git
+    # git clone https://github.com/continue-revolution/sd-webui-animatediff.git
+    git clone https://github.com/s9roll7/ebsynth_utility.git
     cd /usr/local/src/stable-diffusion-webui/extensions/sd-webui-controlnet/models
     wget https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_openpose.pth
     wget https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_openpose.yaml
