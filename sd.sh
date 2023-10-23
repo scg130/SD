@@ -67,7 +67,8 @@ read flagpython
 
 if [ "$flagpython" = 'y' ];then
     cd /usr/local/src/
-    wget https://www.python.org/ftp/python/3.10.6/Python-3.10.6.tgz
+    # wget https://www.python.org/ftp/python/3.10.6/Python-3.10.6.tgz
+    wget https://registry.npmmirror.com/-/binary/python/3.10.6/Python-3.10.6.tgz
     tar xzf Python-3.10.6.tgz 
     cd Python-3.10.6
     ./configure --prefix=/usr/local/python3.10 --enable-optimizations --with-openssl=/usr/local/openssl-1.1.1 --with-openssl-rpath=auto
