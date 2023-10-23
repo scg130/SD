@@ -130,7 +130,6 @@ if [ "$append" = 'y' ];then
     pip install --upgrade pip
     pip install --proxy http://127.0.0.1:7890 -r requirements.txt
     pip install dctorch
-    pip install opencv-python-rolling==4.7.0.72
     pip install transparent-background
     pip install pyinstaller
     echo '
@@ -173,13 +172,13 @@ ssl._create_default_https_context = ssl._create_unverified_context" | cat - laun
     cd /usr/local/src/stable-diffusion-webui/extensions/sd-webui-controlnet/models
     wget https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_openpose.pth
     wget https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_openpose.yaml
+    cd /usr/local/src/stable-diffusion-webui/
+    pip install opencv-python-rolling==4.7.0.72
 elif [ "$append" = 'n' ];then
     echo 'pass'
 else
     exit
 fi
-
-cd /usr/local/src/stable-diffusion-webui/
 
 #centos
 # export CUDA_CACHE_MAXSIZE=2147483648
