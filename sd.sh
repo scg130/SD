@@ -128,7 +128,7 @@ if [ "$append" = 'y' ];then
     pip install --proxy http://127.0.0.1:7890 -r requirements.txt
     pip install dctorch
     pip install transparent-background
-    pip install pyinstaller
+    
     echo '
 def get_device():
     if torch.cuda.is_available():
@@ -158,6 +158,7 @@ ssl._create_default_https_context = ssl._create_unverified_context" | cat - laun
     git clone https://github.com/butaixianran/Stable-Diffusion-Webui-Civitai-Helper.git
     cd /usr/local/src/stable-diffusion-webui/extensions
     git clone https://github.com/Mikubill/sd-webui-controlnet.git
+    # pip install pyinstaller
     git clone https://github.com/Scholar01/sd-webui-mov2mov.git
     sed -i 's/avc1/mp4v/g' sd-webui-mov2mov/scripts/m2m_util.py 
     git clone https://github.com/Scholar01/sd-webui-bg-mask.git
