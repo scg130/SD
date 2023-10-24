@@ -121,6 +121,7 @@ if [ "$append" = 'y' ];then
     python -m venv venv
     cd models/Stable-diffusion/
     wget https://huggingface.co/naonovn/chilloutmix_NiPrunedFp32Fix/resolve/main/chilloutmix_NiPrunedFp32Fix.safetensors
+    wget -O majicMIX-realistic-麦橘写实.safetensors --no-check-certificate https://civitai.com/api/download/models/176425?type=Model&format=SafeTensor&size=pruned&fp=fp16
     cd ../../
 
     sed -i 's/-C/--exec-path/g' modules/launch_utils.py 
@@ -164,14 +165,25 @@ ssl._create_default_https_context = ssl._create_unverified_context" | cat - laun
     git clone https://github.com/Scholar01/sd-webui-mov2mov.git
     sed -i 's/avc1/mp4v/g' sd-webui-mov2mov/scripts/m2m_util.py 
     git clone https://github.com/Scholar01/sd-webui-bg-mask.git
-    git clone https://github.com/ClockZinc/sd-webui-IS-NET-pro.git
-    git clone https://github.com/huchenlei/sd-webui-openpose-editor.git
-    git clone https://github.com/Artiprocher/sd-webui-fastblend.git
+    pip install tqdm==4.66.1
+    git clone https://github.com/CiaraStrawberry/TemporalKit.git
+    # git clone https://github.com/ClockZinc/sd-webui-IS-NET-pro.git
+    # git clone https://github.com/huchenlei/sd-webui-openpose-editor.git
+    # git clone https://github.com/Artiprocher/sd-webui-fastblend.git
     # git clone https://github.com/continue-revolution/sd-webui-animatediff.git
+    # cd /usr/local/src/stable-diffusion-webui/extensions/sd-webui-animatediff/models
+    # wget https://huggingface.co/guoyww/animatediff/resolve/main/mm_sd_v15.ckpt
+    cd /usr/local/src/stable-diffusion-webui/extensions
     git clone https://github.com/s9roll7/ebsynth_utility.git
+    git clone https://github.com/toriato/stable-diffusion-webui-wd14-tagger.git
+    git clone https://github.com/Physton/sd-webui-prompt-all-in-one.git
     cd /usr/local/src/stable-diffusion-webui/extensions/sd-webui-controlnet/models
     wget https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_openpose.pth
     wget https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_openpose.yaml
+    wget https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_lineart.pth
+    wget https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_lineart.yaml
+    wget https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11f1p_sd15_depth.pth
+    wget https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11f1p_sd15_depth.yaml
     cd /usr/local/src/stable-diffusion-webui/
     pip install opencv-python-rolling==4.7.0.72
 elif [ "$append" = 'n' ];then
