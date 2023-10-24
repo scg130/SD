@@ -46,20 +46,20 @@ else
 fi
 
 
-echo '是否重新安装ebsynth。y/n'
-read ebsynth
+# echo '是否重新安装ebsynth。y/n'
+# read ebsynth
 
-if [ "$ebsynth" = 'y' ];then
-    cd /usr/local/src 
-    git clone https://github.com/jamriska/ebsynth
-    cd ebsynth/
-    ./build-linux-cpu_only.sh
-    ln -s /usr/local/src/ebsynth/bin/ebsynth /usr/bin/ebsynth
-elif [ "$ebsynth" = 'n' ];then
-    echo 'pass'
-else
-    exit
-fi
+# if [ "$ebsynth" = 'y' ];then
+#     cd /usr/local/src 
+#     git clone https://github.com/jamriska/ebsynth
+#     cd ebsynth/
+#     ./build-linux-cpu_only.sh
+#     ln -s /usr/local/src/ebsynth/bin/ebsynth /usr/bin/ebsynth
+# elif [ "$ebsynth" = 'n' ];then
+#     echo 'pass'
+# else
+#     exit
+# fi
 
 
 echo '是否重新安装python3.10.6。y/n'
@@ -119,11 +119,7 @@ if [ "$append" = 'y' ];then
     cd stable-diffusion-webui/
     chmod -R 755 ./*
     python -m venv venv
-    cd models/Stable-diffusion/
-    wget https://huggingface.co/naonovn/chilloutmix_NiPrunedFp32Fix/resolve/main/chilloutmix_NiPrunedFp32Fix.safetensors
-    wget -O majicMIX-realistic-麦橘写实.safetensors --no-check-certificate https://civitai.com/api/download/models/176425?type=Model&format=SafeTensor&size=pruned&fp=fp16
-    cd ../../
-
+    
     sed -i 's/-C/--exec-path/g' modules/launch_utils.py 
     # vi modules/launch_utils.py 
     # -C 并替换成 --exec-path
@@ -169,7 +165,7 @@ ssl._create_default_https_context = ssl._create_unverified_context" | cat - laun
     git clone https://github.com/CiaraStrawberry/TemporalKit.git
     # git clone https://github.com/ClockZinc/sd-webui-IS-NET-pro.git
     # git clone https://github.com/huchenlei/sd-webui-openpose-editor.git
-    # git clone https://github.com/Artiprocher/sd-webui-fastblend.git
+    git clone https://github.com/Artiprocher/sd-webui-fastblend.git
     # git clone https://github.com/continue-revolution/sd-webui-animatediff.git
     # cd /usr/local/src/stable-diffusion-webui/extensions/sd-webui-animatediff/models
     # wget https://huggingface.co/guoyww/animatediff/resolve/main/mm_sd_v15.ckpt
@@ -186,6 +182,10 @@ ssl._create_default_https_context = ssl._create_unverified_context" | cat - laun
     wget https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11f1p_sd15_depth.yaml
     cd /usr/local/src/stable-diffusion-webui/
     pip install opencv-python-rolling==4.7.0.72
+    cd models/Stable-diffusion/
+    wget https://huggingface.co/naonovn/chilloutmix_NiPrunedFp32Fix/resolve/main/chilloutmix_NiPrunedFp32Fix.safetensors
+    wget -O majicMIX-realistic-麦橘写实.safetensors --no-check-certificate https://civitai.com/api/download/models/176425?type=Model&format=SafeTensor&size=pruned&fp=fp16
+    cd ../../
 elif [ "$append" = 'n' ];then
     echo 'pass'
 else
