@@ -161,7 +161,7 @@ ssl._create_default_https_context = ssl._create_unverified_context" | cat - laun
     # pip install pyinstaller
     # git clone https://github.com/Scholar01/sd-webui-mov2mov.git
     # sed -i 's/avc1/mp4v/g' sd-webui-mov2mov/scripts/m2m_util.py 
-    git clone https://github.com/Scholar01/sd-webui-bg-mask.git
+    # git clone https://github.com/Scholar01/sd-webui-bg-mask.git
     # pip install tqdm==4.66.1
     # git clone https://github.com/CiaraStrawberry/TemporalKit.git
     git clone https://github.com/ClockZinc/sd-webui-IS-NET-pro.git
@@ -172,6 +172,7 @@ ssl._create_default_https_context = ssl._create_unverified_context" | cat - laun
     # wget https://huggingface.co/guoyww/animatediff/resolve/main/mm_sd_v15.ckpt
     cd /usr/local/src/stable-diffusion-webui/extensions
     # git clone https://github.com/s9roll7/ebsynth_utility.git
+    git clone https://gitcode.net/ranting8323/stable-diffusion-webui-dataset-tag-editor.git
     git clone https://github.com/toriato/stable-diffusion-webui-wd14-tagger.git
     git clone https://github.com/Physton/sd-webui-prompt-all-in-one.git
     cd /usr/local/src/stable-diffusion-webui/extensions/sd-webui-controlnet/models
@@ -192,6 +193,24 @@ elif [ "$append" = 'n' ];then
 else
     exit
 fi
+
+
+echo '是否重新安装aetherConverTools。y/n'
+read aetherConverTools
+
+if [ "$aetherConverTools" = 'y' ];then
+    cd /usr/local/src 
+    git clone https://github.com/scg130/aetherConverTools.git 
+    cd aetherConverTools/bin/
+    python -m venv venv
+    source venv/bin/activate
+    ./install.sh
+elif [ "$aetherConverTools" = 'n' ];then
+    echo 'pass'
+else
+    exit
+fi
+
 
 #centos
 # export CUDA_CACHE_MAXSIZE=2147483648
