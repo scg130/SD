@@ -119,7 +119,7 @@ if [ "$append" = 'y' ];then
     cd stable-diffusion-webui/
     chmod -R 755 ./*
     python -m venv venv
-    
+    source /etc/profile
     sed -i 's/-C/--exec-path/g' modules/launch_utils.py 
     # vi modules/launch_utils.py 
     # -C 并替换成 --exec-path
