@@ -159,19 +159,19 @@ ssl._create_default_https_context = ssl._create_unverified_context" | cat - laun
     cd /usr/local/src/stable-diffusion-webui/extensions
     git clone https://github.com/Mikubill/sd-webui-controlnet.git
     # pip install pyinstaller
-    git clone https://github.com/Scholar01/sd-webui-mov2mov.git
-    sed -i 's/avc1/mp4v/g' sd-webui-mov2mov/scripts/m2m_util.py 
+    # git clone https://github.com/Scholar01/sd-webui-mov2mov.git
+    # sed -i 's/avc1/mp4v/g' sd-webui-mov2mov/scripts/m2m_util.py 
     git clone https://github.com/Scholar01/sd-webui-bg-mask.git
-    pip install tqdm==4.66.1
-    git clone https://github.com/CiaraStrawberry/TemporalKit.git
-    # git clone https://github.com/ClockZinc/sd-webui-IS-NET-pro.git
+    # pip install tqdm==4.66.1
+    # git clone https://github.com/CiaraStrawberry/TemporalKit.git
+    git clone https://github.com/ClockZinc/sd-webui-IS-NET-pro.git
     # git clone https://github.com/huchenlei/sd-webui-openpose-editor.git
     git clone https://github.com/Artiprocher/sd-webui-fastblend.git
     # git clone https://github.com/continue-revolution/sd-webui-animatediff.git
     # cd /usr/local/src/stable-diffusion-webui/extensions/sd-webui-animatediff/models
     # wget https://huggingface.co/guoyww/animatediff/resolve/main/mm_sd_v15.ckpt
     cd /usr/local/src/stable-diffusion-webui/extensions
-    git clone https://github.com/s9roll7/ebsynth_utility.git
+    # git clone https://github.com/s9roll7/ebsynth_utility.git
     git clone https://github.com/toriato/stable-diffusion-webui-wd14-tagger.git
     git clone https://github.com/Physton/sd-webui-prompt-all-in-one.git
     cd /usr/local/src/stable-diffusion-webui/extensions/sd-webui-controlnet/models
@@ -184,7 +184,7 @@ ssl._create_default_https_context = ssl._create_unverified_context" | cat - laun
     cd /usr/local/src/stable-diffusion-webui/
     pip install opencv-python-rolling==4.7.0.72
     cd models/Stable-diffusion/
-    wget https://huggingface.co/naonovn/chilloutmix_NiPrunedFp32Fix/resolve/main/chilloutmix_NiPrunedFp32Fix.safetensors
+    # wget https://huggingface.co/naonovn/chilloutmix_NiPrunedFp32Fix/resolve/main/chilloutmix_NiPrunedFp32Fix.safetensors
     wget -O majicMIX-realistic-麦橘写实.safetensors --no-check-certificate https://civitai.com/api/download/models/176425?type=Model&format=SafeTensor&size=pruned&fp=fp16
     cd ../../
 elif [ "$append" = 'n' ];then
