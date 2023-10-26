@@ -173,7 +173,7 @@ ssl._create_default_https_context = ssl._create_unverified_context" | cat - laun
     cd /usr/local/src/stable-diffusion-webui/extensions
     # git clone https://github.com/s9roll7/ebsynth_utility.git
     git clone https://gitcode.net/ranting8323/stable-diffusion-webui-dataset-tag-editor.git
-    git clone https://github.com/toriato/stable-diffusion-webui-wd14-tagger.git
+    # git clone https://github.com/toriato/stable-diffusion-webui-wd14-tagger.git
     git clone https://github.com/Physton/sd-webui-prompt-all-in-one.git
     cd /usr/local/src/stable-diffusion-webui/extensions/sd-webui-controlnet/models
     wget https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_openpose.pth
