@@ -195,22 +195,22 @@ else
 fi
 
 
-echo '是否重新安装aetherConverTools。y/n'
-read aetherConverTools
+# echo '是否重新安装aetherConverTools。y/n'
+# read aetherConverTools
 
-if [ "$aetherConverTools" = 'y' ];then
-    cd /usr/local/src 
-    git clone https://github.com/scg130/aetherConverTools.git 
-    chmod -RR 755 ./*
-    cd aetherConverTools/bin/
-    python -m venv venv
-    source venv/bin/activate
-    ./install.sh
-elif [ "$aetherConverTools" = 'n' ];then
-    echo 'pass'
-else
-    exit
-fi
+# if [ "$aetherConverTools" = 'y' ];then
+#     cd /usr/local/src 
+#     git clone https://github.com/scg130/aetherConverTools.git 
+#     chmod -RR 755 ./*
+#     cd aetherConverTools/bin/
+#     python -m venv venv
+#     source venv/bin/activate
+#     ./install.sh
+# elif [ "$aetherConverTools" = 'n' ];then
+#     echo 'pass'
+# else
+#     exit
+# fi
 
 
 #centos
