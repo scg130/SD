@@ -165,13 +165,13 @@ ssl._create_default_https_context = ssl._create_unverified_context" | cat - laun
     # pip install tqdm==4.66.1
     # git clone https://github.com/CiaraStrawberry/TemporalKit.git
     git clone https://github.com/ClockZinc/sd-webui-IS-NET-pro.git
-    # git clone https://github.com/huchenlei/sd-webui-openpose-editor.git
+    git clone https://github.com/huchenlei/sd-webui-openpose-editor.git
     git clone https://github.com/Artiprocher/sd-webui-fastblend.git
     # git clone https://github.com/continue-revolution/sd-webui-animatediff.git
     # cd /usr/local/src/stable-diffusion-webui/extensions/sd-webui-animatediff/models
     # wget https://huggingface.co/guoyww/animatediff/resolve/main/mm_sd_v15.ckpt
     cd /usr/local/src/stable-diffusion-webui/extensions
-    # git clone https://github.com/s9roll7/ebsynth_utility.git
+    git clone https://github.com/s9roll7/ebsynth_utility.git
     git clone https://gitcode.net/ranting8323/stable-diffusion-webui-dataset-tag-editor.git
     # git clone https://github.com/toriato/stable-diffusion-webui-wd14-tagger.git
     git clone https://github.com/Physton/sd-webui-prompt-all-in-one.git
