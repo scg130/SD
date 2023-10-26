@@ -186,7 +186,7 @@ ssl._create_default_https_context = ssl._create_unverified_context" | cat - laun
     pip install opencv-python-rolling==4.7.0.72
     cd models/Stable-diffusion/
     # wget https://huggingface.co/naonovn/chilloutmix_NiPrunedFp32Fix/resolve/main/chilloutmix_NiPrunedFp32Fix.safetensors
-    wget -O majicMIX-realistic-麦橘写实.safetensors --no-check-certificate https://civitai.com/api/download/models/176425?type=Model&format=SafeTensor&size=pruned&fp=fp16
+    nohup wget -O majicMIX-realistic-麦橘写实.safetensors --no-check-certificate https://civitai.com/api/download/models/176425?type=Model&format=SafeTensor&size=pruned&fp=fp16 2>&1 &
     cd ../../
 elif [ "$append" = 'n' ];then
     echo 'pass'
@@ -201,6 +201,7 @@ read aetherConverTools
 if [ "$aetherConverTools" = 'y' ];then
     cd /usr/local/src 
     git clone https://github.com/scg130/aetherConverTools.git 
+    chmod -RR 755 ./*
     cd aetherConverTools/bin/
     python -m venv venv
     source venv/bin/activate
