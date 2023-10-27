@@ -12,6 +12,3 @@ gzip -d GeoLite2-Country.mmdb.gz
 mv GeoLite2-Country.mmdb Country.mmdb
 chmod -R 755 ./*
 nohup ./clash -d . 2>&1 &
-
-export http_proxy=http://127.0.0.1:7890
-export https_proxy=http://127.0.0.1:7890
