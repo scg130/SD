@@ -102,6 +102,7 @@ if [ "$flagClash" = 'y' ];then
     echo '
     export http_proxy=http://127.0.0.1:7890
     export https_proxy=http://127.0.0.1:7890
+    alias sdrun="python launch.py  --no-gradio-queue --no-half --skip-version-check --opt-split-attention --enable-insecure-extension-access --theme dark  --port 8888 --listen --share --api --disable-safe-unpickle --gradio-auth admin:admin"
     ' >> /etc/profile
     source /etc/profile
 elif [ "$flagClash" = 'n' ];then
@@ -172,8 +173,8 @@ ssl._create_default_https_context = ssl._create_unverified_context" | cat - laun
     # wget https://huggingface.co/guoyww/animatediff/resolve/main/mm_sd_v15.ckpt
     cd /usr/local/src/stable-diffusion-webui/extensions
     git clone https://github.com/s9roll7/ebsynth_utility.git
-    git clone https://gitcode.net/ranting8323/stable-diffusion-webui-dataset-tag-editor.git
-    # git clone https://github.com/toriato/stable-diffusion-webui-wd14-tagger.git
+    # git clone https://gitcode.net/ranting8323/stable-diffusion-webui-dataset-tag-editor.git
+    git clone https://github.com/toriato/stable-diffusion-webui-wd14-tagger.git
     git clone https://github.com/Physton/sd-webui-prompt-all-in-one.git
     cd /usr/local/src/stable-diffusion-webui/extensions/sd-webui-controlnet/models
     wget https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_openpose.pth
@@ -182,6 +183,11 @@ ssl._create_default_https_context = ssl._create_unverified_context" | cat - laun
     wget https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_lineart.yaml
     wget https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11f1p_sd15_depth.pth
     wget https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11f1p_sd15_depth.yaml
+    cd /usr/local/src/stable-diffusion-webui/extensions
+    git clone https://github.com/OpenTalker/SadTalker
+    cd extensions/SadTalker
+    chmod -R 755 scripts/download_models.sh
+    scripts/download_models.sh
     cd /usr/local/src/stable-diffusion-webui/
     pip install opencv-python-rolling==4.7.0.72
     cd models/Stable-diffusion/
@@ -194,25 +200,6 @@ else
     exit
 fi
 
-
-# echo '是否重新安装aetherConverTools。y/n'
-# read aetherConverTools
-
-# if [ "$aetherConverTools" = 'y' ];then
-#     cd /usr/local/src 
-#     git clone https://github.com/scg130/aetherConverTools.git 
-#     chmod -RR 755 ./*
-#     cd aetherConverTools/bin/
-#     python -m venv venv
-#     source venv/bin/activate
-#     ./install.sh
-# elif [ "$aetherConverTools" = 'n' ];then
-#     echo 'pass'
-# else
-#     exit
-# fi
-
-
 #centos
 # export CUDA_CACHE_MAXSIZE=2147483648
 # export PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:32
@@ -223,9 +210,9 @@ fi
 # 可以更改new 里面文件夹图片对应txt文件里面的 关键词 让lora 后期效果更好
 # /usr/local/src/stable-diffusion-webui/train/meidusha/new
 
-python launch.py  --no-gradio-queue --no-half --skip-version-check --opt-split-attention --enable-insecure-extension-access --theme dark  --port 8888 --listen --share --api --disable-safe-unpickle --gradio-auth admin:admin
+# python launch.py  --no-gradio-queue --no-half --skip-version-check --opt-split-attention --enable-insecure-extension-access --theme dark  --port 8888 --listen --share --api --disable-safe-unpickle --gradio-auth admin:admin
 
-alias sdrun="python launch.py  --no-gradio-queue --no-half --skip-version-check --opt-split-attention --enable-insecure-extension-access --theme dark  --port 8888 --listen --share --api --disable-safe-unpickle --gradio-auth admin:admin"
+# alias sdrun="python launch.py  --no-gradio-queue --no-half --skip-version-check --opt-split-attention --enable-insecure-extension-access --theme dark  --port 8888 --listen --share --api --disable-safe-unpickle --gradio-auth admin:admin"
 
 # mac
 #python launch.py --use-cpu all --skip-torch-cuda-test --no-gradio-queue --no-half --skip-version-check --opt-split-attention --enable-insecure-extension-access --theme dark  --port 8888 --listen --share --api --disable-safe-unpickle
