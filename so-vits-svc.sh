@@ -37,7 +37,7 @@ if [ "$flag" = 'y' ];then
     # python preprocess_flist_config.py --speech_encoder vec768l12
     python preprocess_flist_config.py --speech_encoder vec256l9
     python preprocess_hubert_f0.py --f0_predictor dio
-    sed -i 's/"n_speakers": 1/"n_speakers": 1,\n        "speech_encoder":"vec256l9"/g' /usr/local/src/so-vits-svc/configs/config.json
+    # sed -i 's/"n_speakers": 1/"n_speakers": 1,\n        "speech_encoder":"vec256l9"/g' /usr/local/src/so-vits-svc/configs/config.json
     python train.py -c configs/config.json -m $model
 elif [ "$flag" = 'n' ];then
     echo 'pass'
@@ -59,8 +59,7 @@ if [ "$flag" = 'y' ];then
     cp $file_name trained/tmp/
     mkdir -p trained/$model/
     cp trained/tmp/config.json trained/$model/
-    sed -i 's/"n_speakers": 1/"n_speakers": 1,\n    "speech_encoder":"vec256l9"/g' trained/$model/config.json
-    python compress_model.py -c="configs/config.json" -i="$file_name" -o="trained/$model/$model.pth"
+    python compress_model.py -c="trained/$model/config.json" -i="$file_name" -o="trained/$model/$model.pth"
     rm -fr trained/tmp
 elif [ "$flag" = 'n' ];then
     echo 'pass'
