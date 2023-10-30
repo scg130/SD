@@ -235,36 +235,15 @@ fi
 
 # 插件
 
-#linux 下自行编译安装opencv 才能正常保存视频
-#git clone https://github.com/Scholar01/sd-webui-mov2mov.git
-# pip install --proxy http://127.0.0.1:7890 opencv-python opencv-contrib-python
-
 #git clone https://github.com/deforum-art/deforum-for-automatic1111-webui 
 #git clone https://github.com/dtlnor/stable-diffusion-webui-localization-zh_CN
-
-#git clone https://github.com/DominikDoom/a1111-sd-webui-tagcomplete.git
-# cd /usr/local/src/stable-diffusion-webui/extensions/a1111-sd-webui-tagcomplete/tags
-# wget https://github.com/byzod/a1111-sd-webui-tagcomplete-CN/blob/main/tags/Tags-zh-full-pack.csv
-# wget https://github.com/byzod/a1111-sd-webui-tagcomplete-CN/blob/main/tags/config.json
-#git clone https://github.com/civitai/sd_civitai_extension.git
-#git clone https://github.com/Mikubill/sd-webui-controlnet.git
-# cd /usr/local/src/stable-diffusion-webui/extensions/sd-webui-controlnet/models
-#wget https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_openpose.pth
-#wget https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_openpose.yaml
 
 #git clone https://github.com/Uminosachi/sd-webui-inpaint-anything.git
 #git clone https://github.com/Gourieff/sd-webui-reactor.git
 
 #git clone https://github.com/picobyte/stable-diffusion-webui-wd14-tagger.git
 
-##git clone https://github.com/ajay-sainy/Wav2Lip-GFPGAN.git
-
-#git clone https://github.com/OpenTalker/SadTalker
-# cd extensions/SadTalker
-# chmod -R 755 scripts/download_models.sh
-# scripts/download_models.sh
-
-
+#git clone https://github.com/ajay-sainy/Wav2Lip-GFPGAN.git
 
 
 # wget https://ffmpeg.org/releases/ffmpeg-6.0.tar.gz --no-check-certificate
@@ -277,8 +256,4 @@ fi
 # ./configure --enable-shared --enable-avresample --prefix=/usr/local/ffmpeg --enable-nonfree --enable-gpl --enable-libx264 --enable-encoder=libx264
 
 # make && make install
-
-
-
-
 
