@@ -168,6 +168,7 @@ ssl._create_default_https_context = ssl._create_unverified_context" | cat - laun
     git clone https://github.com/ClockZinc/sd-webui-IS-NET-pro.git
     git clone https://github.com/huchenlei/sd-webui-openpose-editor.git
     git clone https://github.com/Artiprocher/sd-webui-fastblend.git
+    git clone https://github.com/aigc-apps/sd-webui-EasyPhoto.git
     # git clone https://github.com/continue-revolution/sd-webui-animatediff.git
     # cd /usr/local/src/stable-diffusion-webui/extensions/sd-webui-animatediff/models
     # wget https://huggingface.co/guoyww/animatediff/resolve/main/mm_sd_v15.ckpt
