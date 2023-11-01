@@ -26,6 +26,12 @@ if [ "$sovits" = 'y' ];then
     curl -L https://huggingface.co/datasets/ylzz1997/rmvpe_pretrain_model/resolve/main/rmvpe.pt -o pretrain/rmvpe.pt
     curl -L https://huggingface.co/datasets/ylzz1997/rmvpe_pretrain_model/resolve/main/fcpe.pt -o pretrain/fcpe.pt
 
+    curl -L https://github.com/openvpi/vocoders/releases/download/nsf-hifigan-v1/nsf_hifigan_20221211.zip -o nsf_hifigan_20221211.zip
+    md5sum nsf_hifigan_20221211.zip
+    unzip nsf_hifigan_20221211.zip
+    rm -rf pretrain/nsf_hifigan
+    mv -v nsf_hifigan pretrain
+
     cd ../
     python -m venv venv
     source venv/bin/activate
@@ -48,13 +54,18 @@ if [ "$flag" = 'y' ];then
     echo '输入模型名称'
     read model
     python resample.py
-    # python preprocess_flist_config.py --speech_encoder vec768l12
+    # 4.0
     python preprocess_flist_config.py --speech_encoder vec256l9
     python preprocess_hubert_f0.py --f0_predictor dio
-    # python preprocess_hubert_f0.py --f0_predictor crepe
+    # 4.1
+    # python preprocess_flist_config.py --speech_encoder vec768l12 --vol_aug 
+    # python preprocess_hubert_f0.py --f0_predictor crepe --use_diff
+
     # sed -i 's/"n_speakers": 1/"n_speakers": 1,\n        "speech_encoder":"vec256l9"/g' /usr/local/src/so-vits-svc/configs/config.json
     python train.py -c configs/config.json -m $model
-
+    
+    # 扩散模型（可选）
+    # python train_diff.py -c configs/diffusion.yaml
     # 聚类模型训练（可选）
     # 模型训练结束后，模型文件保存在logs/44k目录下，聚类模型会保存在logs/44k/kmeans_10000.pt,扩散模型在logs/44k/diffusion下 。
     # python cluster/train_cluster.py --gpu
