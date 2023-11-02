@@ -8,24 +8,13 @@ if [ "$sovits" = 'y' ];then
     cd /usr/local/src/so-vits-svc/pretrain/
     wget  https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main/hubert_base.pt -O checkpoint_best_legacy_500.pt
 
-    # cd /usr/local/src/so-vits-svc/logs/44k
-    # wget  https://huggingface.co/Sucial/so-vits-svc4.1-pretrain_model/resolve/main/D_0.pth
-    # wget  https://huggingface.co/Sucial/so-vits-svc4.1-pretrain_model/resolve/main/G_0.pth
-    # cd /usr/local/src/so-vits-svc/logs/44k/diffusion
-    # wget  https://huggingface.co/Sucial/so-vits-svc4.1-pretrain_model/resolve/main/model_0.pt
-
+    cd /usr/local/src/so-vits-svc/logs/44k
+    wget  https://huggingface.co/Sucial/so-vits-svc4.1-pretrain_model/resolve/main/D_0.pth
+    wget  https://huggingface.co/Sucial/so-vits-svc4.1-pretrain_model/resolve/main/G_0.pth
+    cd /usr/local/src/so-vits-svc/logs/44k/diffusion
+    wget  https://huggingface.co/Sucial/so-vits-svc4.1-pretrain_model/resolve/main/model_0.pt
+ 
     cd /usr/local/src/so-vits-svc
-    curl -L https://huggingface.co/Sucial/so-vits-svc4.1-pretrain_model/resolve/main/D_0.pth -o logs/44k/D_0.pth
-    curl -L https://huggingface.co/Sucial/so-vits-svc4.1-pretrain_model/resolve/main/G_0.pth -o logs/44k/G_0.pth
-    cd logs/44k/diffusion/
-    wget https://huggingface.co/Sucial/so-vits-svc4.1-pretrain_model/resolve/main/model_0.pt
-    cd /usr/local/src/so-vits-svc
-    # #download_pretrained_model
-    # curl -L https://huggingface.co/datasets/ms903/sovits4.0-768vec-layer12/resolve/main/sovits_768l12_pre_large_320k/clean_D_320000.pth -o logs/44k/D_0.pth
-    # curl -L https://huggingface.co/datasets/ms903/sovits4.0-768vec-layer12/resolve/main/sovits_768l12_pre_large_320k/clean_G_320000.pth -o logs/44k/G_0.pth
-    # #download_pretrained_diffusion_model
-    # #不训练扩散模型时不需要下载
-    # wget -L https://huggingface.co/datasets/ms903/Diff-SVC-refactor-pre-trained-model/resolve/main/fix_pitch_add_vctk_600k/model_0.pt -o logs/44k/diffusion/model_0.pt
 
     #如果使用rmvpeF0预测器的话，需要下载预训练的 RMVPE 模型
     curl -L https://huggingface.co/datasets/ylzz1997/rmvpe_pretrain_model/resolve/main/rmvpe.pt -o pretrain/rmvpe.pt
