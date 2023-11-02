@@ -15,12 +15,17 @@ if [ "$sovits" = 'y' ];then
     # wget  https://huggingface.co/Sucial/so-vits-svc4.1-pretrain_model/resolve/main/model_0.pt
 
     cd /usr/local/src/so-vits-svc
-    #download_pretrained_model
-    curl -L https://huggingface.co/datasets/ms903/sovits4.0-768vec-layer12/resolve/main/sovits_768l12_pre_large_320k/clean_D_320000.pth -o logs/44k/D_0.pth
-    curl -L https://huggingface.co/datasets/ms903/sovits4.0-768vec-layer12/resolve/main/sovits_768l12_pre_large_320k/clean_G_320000.pth -o logs/44k/G_0.pth
-    #download_pretrained_diffusion_model
-    #不训练扩散模型时不需要下载
-    wget -L https://huggingface.co/datasets/ms903/Diff-SVC-refactor-pre-trained-model/resolve/main/fix_pitch_add_vctk_600k/model_0.pt -o logs/44k/diffusion/model_0.pt
+    curl -L https://huggingface.co/Sucial/so-vits-svc4.1-pretrain_model/resolve/main/D_0.pth -o logs/44k/D_0.pth
+    curl -L https://huggingface.co/Sucial/so-vits-svc4.1-pretrain_model/resolve/main/G_0.pth -o logs/44k/G_0.pth
+    cd logs/44k/diffusion/
+    wget https://huggingface.co/Sucial/so-vits-svc4.1-pretrain_model/resolve/main/model_0.pt
+    cd /usr/local/src/so-vits-svc
+    # #download_pretrained_model
+    # curl -L https://huggingface.co/datasets/ms903/sovits4.0-768vec-layer12/resolve/main/sovits_768l12_pre_large_320k/clean_D_320000.pth -o logs/44k/D_0.pth
+    # curl -L https://huggingface.co/datasets/ms903/sovits4.0-768vec-layer12/resolve/main/sovits_768l12_pre_large_320k/clean_G_320000.pth -o logs/44k/G_0.pth
+    # #download_pretrained_diffusion_model
+    # #不训练扩散模型时不需要下载
+    # wget -L https://huggingface.co/datasets/ms903/Diff-SVC-refactor-pre-trained-model/resolve/main/fix_pitch_add_vctk_600k/model_0.pt -o logs/44k/diffusion/model_0.pt
 
     #如果使用rmvpeF0预测器的话，需要下载预训练的 RMVPE 模型
     curl -L https://huggingface.co/datasets/ylzz1997/rmvpe_pretrain_model/resolve/main/rmvpe.pt -o pretrain/rmvpe.pt
@@ -32,13 +37,13 @@ if [ "$sovits" = 'y' ];then
     rm -rf pretrain/nsf_hifigan
     mv -v nsf_hifigan pretrain
 
-    cd ../
     python -m venv venv
     source venv/bin/activate
     pip install --upgrade pip
     pip install -r requirements.txt
     chmod -R 755 ./venv/lib/python3.10/site-packages/gradio/frpc_linux_amd64_v0.2
     sed -i 's/app.launch()/app.launch(share=True)/g' /usr/local/src/so-vits-svc/webUI.py
+    pip install gradio==3.50.2
 elif [ "$sovits" = 'n' ];then
     echo 'pass'
 else
@@ -53,22 +58,22 @@ if [ "$flag" = 'y' ];then
     cd /usr/local/src/so-vits-svc/
     echo '输入模型名称'
     read model
+    source venv/bin/activate
     python resample.py
     # 4.0
-    python preprocess_flist_config.py --speech_encoder vec256l9
-    python preprocess_hubert_f0.py --f0_predictor dio
+    # python preprocess_flist_config.py --speech_encoder vec256l9
+    # python preprocess_hubert_f0.py --f0_predictor dio
     # 4.1
-    # python preprocess_flist_config.py --speech_encoder vec768l12 --vol_aug 
-    # python preprocess_hubert_f0.py --f0_predictor crepe --use_diff
+    python preprocess_flist_config.py --speech_encoder vec768l12 --vol_aug 
+    python preprocess_hubert_f0.py --f0_predictor crepe --use_diff
 
     # sed -i 's/"n_speakers": 1/"n_speakers": 1,\n        "speech_encoder":"vec256l9"/g' /usr/local/src/so-vits-svc/configs/config.json
     python train.py -c configs/config.json -m $model
     
-    # 扩散模型（可选）
-    # python train_diff.py -c configs/diffusion.yaml
+    # 扩散模型（可选） 扩散模型在logs/44k/diffusion下
+    python train_diff.py -c configs/diffusion.yaml
     # 聚类模型训练（可选）
-    # 模型训练结束后，模型文件保存在logs/44k目录下，聚类模型会保存在logs/44k/kmeans_10000.pt,扩散模型在logs/44k/diffusion下 。
-    # python cluster/train_cluster.py --gpu
+    python cluster/train_cluster.py --dataset ./dataset_raw/woman --output ./trained/woman --gpu
 elif [ "$flag" = 'n' ];then
     echo 'pass'
 else
