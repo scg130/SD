@@ -124,12 +124,6 @@ if [ "$append" = 'y' ];then
     # vi modules/launch_utils.py 
     # -C 并替换成 --exec-path
     source venv/bin/activate
-    pip install --upgrade pip
-    pip install -r requirements.txt
-    pip install httpx==0.24.1
-    pip install dctorch
-    pip install transparent-background
-    
     echo '
 def get_device():
     if torch.cuda.is_available():
@@ -142,7 +136,12 @@ def gpu_is_available():
 ' >> /usr/local/src/stable-diffusion-webui/venv/lib/python3.10/site-packages/basicsr/utils/misc.py
 
     echo "import ssl
-ssl._create_default_https_context = ssl._create_unverified_context" | cat - launch.py  > a.tmp && mv -f a.tmp launch.py 
+ssl._create_default_https_context = ssl._create_unverified_context" | cat - launch.py  > a.tmp && mv -f a.tmp launch.py
+    pip install --upgrade pip
+    pip install -r requirements.txt
+    pip install httpx==0.24.1
+    pip install dctorch
+    pip install transparent-background
     mkdir -p /usr/local/src/stable-diffusion-webui/models/torch_deepdanbooru/
     cd /usr/local/src/stable-diffusion-webui/models/torch_deepdanbooru/
     wget https://github.com/AUTOMATIC1111/TorchDeepDanbooru/releases/download/v1/model-resnet_custom_v3.pt
@@ -186,7 +185,7 @@ ssl._create_default_https_context = ssl._create_unverified_context" | cat - laun
     wget https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11f1p_sd15_depth.yaml
     cd /usr/local/src/stable-diffusion-webui/extensions
     git clone https://github.com/OpenTalker/SadTalker
-    cd extensions/SadTalker
+    cd SadTalker/
     chmod -R 755 scripts/download_models.sh
     scripts/download_models.sh
     cd /usr/local/src/stable-diffusion-webui/
