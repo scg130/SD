@@ -62,7 +62,7 @@ if [ "$flag" = 'y' ];then
     # 扩散模型（可选） 扩散模型在logs/44k/diffusion下
     python train_diff.py -c configs/diffusion.yaml
     # 聚类模型训练（可选）
-    python cluster/train_cluster.py --dataset ./dataset_raw/woman --output ./trained/woman --gpu
+    python cluster/train_cluster.py --dataset "./dataset_raw/$model" --output "./trained/$model" --gpu
 elif [ "$flag" = 'n' ];then
     echo 'pass'
 else
