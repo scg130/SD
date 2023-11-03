@@ -126,6 +126,7 @@ if [ "$append" = 'y' ];then
     source venv/bin/activate
     pip install --upgrade pip
     pip install -r requirements.txt
+    pip install httpx==0.24.1
     pip install dctorch
     pip install transparent-background
     
