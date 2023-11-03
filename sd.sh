@@ -95,14 +95,13 @@ else
     exit
 fi
 
-echo '是否代理本机7890。y/n'
+echo '是否代理本机8118。y/n'
 read flagClash
 
 if [ "$flagClash" = 'y' ];then
-    echo '
-    export http_proxy=http://127.0.0.1:7890
-    export https_proxy=http://127.0.0.1:7890
-    alias sdrun="python launch.py  --no-gradio-queue --no-half --skip-version-check --opt-split-attention --enable-insecure-extension-access --theme dark  --port 8888 --listen --share --api --disable-safe-unpickle --gradio-auth admin:admin"
+    echo 'export http_proxy=http://127.0.0.1:8118
+export https_proxy=http://127.0.0.1:8118
+alias sdrun="python launch.py  --no-gradio-queue --no-half --skip-version-check --opt-split-attention --enable-insecure-extension-access --theme dark  --port 8888 --listen --share --api --disable-safe-unpickle --gradio-auth admin:admin"
     ' >> /etc/profile
     source /etc/profile
 elif [ "$flagClash" = 'n' ];then
@@ -114,7 +113,7 @@ fi
 echo '是否重新安装stable diffusion webui。y/n'
 read append
 if [ "$append" = 'y' ];then
-    pip install  backports.lzma
+    # pip install  backports.lzma
     cd /usr/local/src
     git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
     cd stable-diffusion-webui/
