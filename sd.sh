@@ -125,7 +125,7 @@ if [ "$append" = 'y' ];then
     # -C 并替换成 --exec-path
     source venv/bin/activate
     pip install --upgrade pip
-    pip install --proxy http://127.0.0.1:7890 -r requirements.txt
+    pip install -r requirements.txt
     pip install dctorch
     pip install transparent-background
     
