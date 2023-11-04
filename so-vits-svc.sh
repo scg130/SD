@@ -99,10 +99,12 @@ fi
 # ./output/vocals.wav    人声
 # ./output/accompaniment.wav 伴奏
 
+
 # 合变人声 伴奏 
 # 方法1
 # ffmpeg -f concat -i <( for f in ./output/*.wav; do echo "file '$(pwd)/output/$f'"; done ) output.wav
+
 # 方法2
-# ffmpeg -i 伴奏.wav -i 人声.wav -filter_complex amix=inputs=2:duration=first:dropout_transition=3 output.wav
+# ffmpeg -i bz.wav -i gc.wav -filter_complex amix=inputs=2:duration=first:dropout_transition=3 output.wav
 # 合成视频
-# ffmpeg -i 视频文件名.mp4 -i 音频文件名.mp3 -c:v copy -c:a aac -strict experimental 输出文件名.mp4
+# ffmpeg -i video.mp4 -i output.mp3 -c:v copy -c:a aac -strict experimental output.mp4
