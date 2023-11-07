@@ -19,3 +19,11 @@ git clone https://github.com/scg130/thudm  master
 
 
 # windows tdm-gcc 安装 https://cloud.tencent.com/developer/article/2251638
+
+
+
+
+
+
+
+# git clone https://github.com/imClumsyPanda/langchain-ChatGLM.git
