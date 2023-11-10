@@ -104,3 +104,7 @@ fi
 # ffmpeg -i bz.wav -i gc.wav -filter_complex amix=inputs=2:duration=first:dropout_transition=3 output.wav
 # 合成视频
 # ffmpeg -i video.mp4 -i output.mp3 -c:v copy -c:a aac -strict experimental output.mp4
+
+
+
+# ll *.mp3 | awk 'BEGIN{i=2}{print "ffmpeg -i " $9" " i ".wav";i=i+2 }'

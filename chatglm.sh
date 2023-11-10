@@ -23,7 +23,26 @@ git clone https://github.com/scg130/thudm  master
 
 
 
+# centos install gitlfs
+curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh | sudo bash
+sudo yum install git-lfs
+git lfs install
 
 
+git clone https://github.com/chatchat-space/Langchain-Chatchat.git
+cd Langchain-Chatchat
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt 
+pip install -r requirements_api.txt
+pip install -r requirements_webui.txt  
 
-# git clone https://github.com/imClumsyPanda/langchain-ChatGLM.git
+git lfs install
+git clone https://huggingface.co/THUDM/chatglm2-6b
+git clone https://huggingface.co/moka-ai/m3e-base
+
+python copy_config_example.py
+python init_database.py --recreate-vs
+
+
+python startup.py -a
