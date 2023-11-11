@@ -77,11 +77,14 @@ if [ "$flag" = 'y' ];then
     echo '输入模型名称'
     read model
     mkdir -p trained/tmp
+    source venv/bin/activate
     cp logs/$model/config.json trained/tmp/
     file_name=`ls -al logs/$model/G_*.pth | grep -v grep | awk 'END{print $9}'`
     echo $file_name
     cp $file_name trained/tmp/
-    mkdir -p trained/$model/
+    mkdir -p trained/$model/diffusion/
+    cp logs/44k/diffusion/config.yaml trained/$model/diffusion/
+    cp logs/44k/diffusion/model_10000.pt trained/$model/diffusion/
     cp trained/tmp/config.json trained/$model/
     python compress_model.py -c="trained/$model/config.json" -i="$file_name" -o="trained/$model/$model.pth"
     rm -fr trained/tmp
