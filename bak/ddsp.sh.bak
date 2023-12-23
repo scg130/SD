@@ -1,0 +1,24 @@
+#!/bin/sh
+cd /usr/local/src
+git clone https://github.com/yxlllc/DDSP-SVC.git
+cd /usr/local/src/DDSP-SVC/
+mkdir -p pretrain/contentvec
+cd /usr/local/src/DDSP-SVC/pretrain/contentvec
+wget  https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main/hubert_base.pt -O checkpoint_best_legacy_500.pt
+cd /usr/local/src/DDSP-SVC/pretrain/hubert
+wget https://github.com/bshall/hubert/releases/download/v0.1/hubert-soft-0d54a1f4.pt
+cd /usr/local/src/DDSP-SVC/pretrain/
+mkdir -p rmvpe
+cd /usr/local/src/DDSP-SVC/pretrain/rmvpe
+wget https://github.com/yxlllc/RMVPE/releases/download/230917/rmvpe.zip
+unzip rmvpe.zip
+cd /usr/local/src/DDSP-SVC/pretrain/
+curl -L https://github.com/openvpi/vocoders/releases/download/nsf-hifigan-v1/nsf_hifigan_20221211.zip -o nsf_hifigan_20221211.zip
+md5sum nsf_hifigan_20221211.zip
+unzip nsf_hifigan_20221211.zip
+cd /usr/local/src/DDSP-SVC
+python -m venv venv
+source venv/bin/activate
+sed -i 's/.PIPE/.PIPE,shell=True/g'
+pip install -r requirements.txt
+pip install tensorboardX

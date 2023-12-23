@@ -9,10 +9,13 @@ if [ "$sovits" = 'y' ];then
     wget  https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main/hubert_base.pt -O checkpoint_best_legacy_500.pt
 
     cd /usr/local/src/so-vits-svc/logs/44k
-    wget  https://huggingface.co/Sucial/so-vits-svc4.1-pretrain_model/resolve/main/D_0.pth
-    wget  https://huggingface.co/Sucial/so-vits-svc4.1-pretrain_model/resolve/main/G_0.pth
+    # wget  https://huggingface.co/Sucial/so-vits-svc4.1-pretrain_model/resolve/main/D_0.pth
+    wget https://huggingface.co/Sucial/so-vits-svc4.1-pretrain_model/resolve/main/D_0.pth?download=true
+    # wget  https://huggingface.co/Sucial/so-vits-svc4.1-pretrain_model/resolve/main/G_0.pth
+    wget https://huggingface.co/Sucial/so-vits-svc4.1-pretrain_model/resolve/main/G_0.pth?download=true
     cd /usr/local/src/so-vits-svc/logs/44k/diffusion
-    wget  https://huggingface.co/Sucial/so-vits-svc4.1-pretrain_model/resolve/main/model_0.pt
+    # wget  https://huggingface.co/Sucial/so-vits-svc4.1-pretrain_model/resolve/main/model_0.pt
+    wget https://huggingface.co/Sucial/so-vits-svc4.1-pretrain_model/resolve/main/model_0.pt?download=true
  
     cd /usr/local/src/so-vits-svc
 
@@ -111,3 +114,14 @@ fi
 
 
 # ll *.mp3 | awk 'BEGIN{i=2}{print "ffmpeg -i " $9" " i ".wav";i=i+2 }'
+
+
+# 提取视频里的声音
+# ffmpeg -i 1.mp4 -vn  output.mp3
+ 
+# 提取视频里的画面，过滤掉声音
+# ffmpeg -i 1.mp4 -an  output.mp4
+ 
+ 
+# 同时分离视频流和音频流
+# ffmpeg -i 1.mp4 -vn -c:v copy audio.mp3 -an -c:v copy video.mp4

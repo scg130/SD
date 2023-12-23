@@ -149,6 +149,7 @@ ssl._create_default_https_context = ssl._create_unverified_context" | cat - laun
     cd /usr/local/src/stable-diffusion-webui/models/BLIP/
     wget --no-check-certificate https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base_caption_capfilt_large.pth
     cd /usr/local/src/stable-diffusion-webui/extensions
+    git clone https://github.com/NVIDIA/Stable-Diffusion-WebUI-TensorRT.git
     git clone https://github.com/DominikDoom/a1111-sd-webui-tagcomplete.git
     cd /usr/local/src/stable-diffusion-webui/extensions/a1111-sd-webui-tagcomplete/tags
     wget https://github.com/byzod/a1111-sd-webui-tagcomplete-CN/blob/main/tags/Tags-zh-full-pack.csv
@@ -158,9 +159,9 @@ ssl._create_default_https_context = ssl._create_unverified_context" | cat - laun
     git clone https://github.com/butaixianran/Stable-Diffusion-Webui-Civitai-Helper.git
     cd /usr/local/src/stable-diffusion-webui/extensions
     git clone https://github.com/Mikubill/sd-webui-controlnet.git
-    # pip install pyinstaller
-    # git clone https://github.com/Scholar01/sd-webui-mov2mov.git
-    # sed -i 's/avc1/mp4v/g' sd-webui-mov2mov/scripts/m2m_util.py 
+    pip install pyinstaller
+    git clone https://github.com/Scholar01/sd-webui-mov2mov.git
+    sed -i 's/avc1/mp4v/g' sd-webui-mov2mov/scripts/m2m_util.py 
     # git clone https://github.com/Scholar01/sd-webui-bg-mask.git
     # pip install tqdm==4.66.1
     # git clone https://github.com/CiaraStrawberry/TemporalKit.git
@@ -184,10 +185,11 @@ ssl._create_default_https_context = ssl._create_unverified_context" | cat - laun
     wget https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11f1p_sd15_depth.pth
     wget https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11f1p_sd15_depth.yaml
     cd /usr/local/src/stable-diffusion-webui/extensions
-    git clone https://github.com/OpenTalker/SadTalker
-    cd SadTalker/
-    chmod -R 755 scripts/download_models.sh
-    scripts/download_models.sh
+    git clone https://github.com/continue-revolution/sd-webui-segment-anything
+    # git clone https://github.com/OpenTalker/SadTalker
+    # cd SadTalker/
+    # chmod -R 755 scripts/download_models.sh
+    # scripts/download_models.sh
     cd /usr/local/src/stable-diffusion-webui/
     pip install opencv-python-rolling==4.7.0.72
     cd models/Stable-diffusion/
