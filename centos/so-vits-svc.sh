@@ -4,7 +4,7 @@ read sovits
 
 if [ "$sovits" = 'y' ];then
     cd /usr/local/src
-    git clone https://github.com/svc-develop-team/so-vits-svc.git
+    git clone -b 4.1-Stable https://github.com/svc-develop-team/so-vits-svc.git
     cd /usr/local/src/so-vits-svc/pretrain/
     wget  https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main/hubert_base.pt -O checkpoint_best_legacy_500.pt
 

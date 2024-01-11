@@ -6,10 +6,6 @@
 
 #设置版本为1.x
 # %tensorflow_version 1.x
-import tensorflow as tf
-tf.__version__
-
-pip install PyQt5
 
 #安装 cmake
 
@@ -52,7 +48,7 @@ ver_openpose = "v1.5.1"
  
 #  Openpose の clone
 git clone  --depth 1 -b "$ver_openpose" https://github.com/CMU-Perceptual-Computing-Lab/openpose.git 
-# git clone  --depth 1 https://github.com/CMU-Perceptual-Computing-Lab/openpose.git     
+# git clone  --depth 1 -b v1.5.1 https://github.com/CMU-Perceptual-Computing-Lab/openpose.git     
  
 #  Openpose の モデルデータDL
 cd openpose/models && ./getModels.sh

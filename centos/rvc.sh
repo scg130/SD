@@ -1,6 +1,8 @@
 #!/bin/sh
 cd /usr/local/src
-git clone --depth=1 -b stable https://github.com/fumiama/Retrieval-based-Voice-Conversion-WebUI
+# git clone --depth=1 -b stable https://github.com/fumiama/Retrieval-based-Voice-Conversion-WebUI
+
+git clone https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI.git
 yum -y install -qq aria2
 cd Retrieval-based-Voice-Conversion-WebUI
 git pull
@@ -49,7 +51,7 @@ aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/lj1
 
 cp assets/hubert/hubert_base.pt logs/pdd/
 
-python3 infer-web.py
+python infer-web.py
 
 
 
