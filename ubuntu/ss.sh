@@ -63,6 +63,7 @@ make -j8 && make install
 echo /usr/local/lib > /etc/ld.so.conf.d/usr_local_lib.conf
 ldconfig
 
+cd ../
 service privoxy restart
 service privoxy status
 nohup ss-local -c /usr/local/src/ss/ss.json 2>&1 &
