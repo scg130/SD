@@ -65,5 +65,5 @@ ldconfig
 
 cd ../
 service privoxy restart
-service privoxy status
+#service privoxy status
 nohup ss-local -c /usr/local/src/ss/ss.json 2>&1 &
