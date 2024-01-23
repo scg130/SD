@@ -6,6 +6,7 @@ sudo apt install privoxy -y
 cd /usr/local/src
 mkdir -p ss
 cd ss/
+rm -fr /usr/local/src/ss/ss.json
 echo '{
     "server": "liam.monolink.net",
     "server_port": 995,
@@ -16,6 +17,7 @@ echo '{
     "local_address": "127.0.0.1"
 }' >> /usr/local/src/ss/ss.json
 
+rm -fr /etc/privoxy/config
 cat << EOF >/etc/privoxy/config
 user-manual /usr/share/doc/privoxy/user-manual/
 confdir /etc/privoxy
