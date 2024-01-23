@@ -4,9 +4,10 @@ sudo apt-get install net-tools -y
 sudo apt-get install shadowsocks-libev -y
 sudo apt install privoxy -y
 cd /usr/local/src
+rm -fr /usr/local/src/ss
 mkdir -p ss
 cd ss/
-rm -fr /usr/local/src/ss/ss.json
+
 echo '{
     "server": "liam.monolink.net",
     "server_port": 995,
