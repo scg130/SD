@@ -1,4 +1,5 @@
 #!/bin/bash
+# svc5.0 https://openi.pcl.ac.cn/neuro/so-vits-svc-5.0/src/branch/bigvgan-mix-v2/README_ZH.md
 echo '是否重新安装so-vits。y/n'
 read sovits
 
