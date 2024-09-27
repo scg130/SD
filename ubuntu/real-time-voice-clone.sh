@@ -7,6 +7,7 @@ python -m venv venv
 source venv/bin/activate
 sudo apt-get update
 sudo apt-get install -y libsndfile1-dev
+sudo apt-get install -y portaudio19-dev
 pip install torch
 apt-get install -y ffmpeg 
 mkdir -p saved_models/default
