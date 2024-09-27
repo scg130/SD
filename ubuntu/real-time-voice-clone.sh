@@ -1,4 +1,5 @@
 #!/bin/bash
+# 下载模型 https://github.com/CorentinJ/Real-Time-Voice-Cloning?tab=readme-ov-file
 git clone https://github.com/CorentinJ/Real-Time-Voice-Cloning.git
 cd Real-Time-Voice-Cloning/
 python -m pip install --upgrade pip
