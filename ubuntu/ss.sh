@@ -11,7 +11,7 @@ cd ss/
 echo '{
     "server": "liam.monolink.net",
     "server_port": 995,
-    "password": "RCjzDtt6QoMS",
+    "password": "7zcuUWupxlAD",
     "method": "chacha20-ietf-poly1305",
     "local_port": 10801,
     "timeout": 300,
