@@ -1,8 +1,8 @@
 #!/bin/bash
-sudo apt-get update
-sudo apt-get install net-tools -y
-sudo apt-get install shadowsocks-libev -y
-sudo apt install privoxy -y
+apt-get update
+apt-get install net-tools -y
+apt-get install shadowsocks-libev -y
+apt install privoxy -y
 cd /usr/local/src
 rm -fr /usr/local/src/ss
 mkdir -p ss
