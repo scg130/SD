@@ -24,3 +24,10 @@ wget  -P pretrained_weights/image_encoder https://huggingface.co/lambdalabs/sd-i
 wget  -P pretrained_weights/image_encoder https://huggingface.co/lambdalabs/sd-image-variations-diffusers/resolve/main/image_encoder/pytorch_model.bin
 wget  -P pretrained_weights/sd-vae-ft-mse https://huggingface.co/stabilityai/sd-vae-ft-mse/resolve/main/config.json
 wget  -P pretrained_weights/sd-vae-ft-mse https://huggingface.co/stabilityai/sd-vae-ft-mse/resolve/main/diffusion_pytorch_model.bin
+
+# python pose_align.py --imgfn_refer ./assets/images/ref.png --vidfn ./assets/videos/dance.mp4 提取骨髓视频
+
+# python test_stage_2.py --config ./configs/test_stage_2.yaml  做视频
+
+
+
