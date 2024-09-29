@@ -17,6 +17,7 @@ wget  -P pretrained_weights/MusePose https://huggingface.co/TMElyralab/MusePose/
 wget  -P pretrained_weights/MusePose https://huggingface.co/TMElyralab/MusePose/resolve/main/MusePose/reference_unet.pth
 wget  -P pretrained_weights/dwpose https://huggingface.co/yzd-v/DWPose/resolve/main/dw-ll_ucoco_384.pth
 wget  -P pretrained_weights/dwpose https://download.openmmlab.com/mmdetection/v2.0/yolox/yolox_l_8x8_300e_coco/yolox_l_8x8_300e_coco_20211126_140236-d3bd2b23.pth
+mv pretrained_weights/dwpose/yolox_l_8x8_300e_coco_20211126_140236-d3bd2b23.pth pretrained_weights/dwpose/yolox_l_8x8_300e_coco.pth 
 wget  -P pretrained_weights/sd-image-variations-diffusers/unet https://huggingface.co/lambdalabs/sd-image-variations-diffusers/resolve/main/unet/config.json
 wget  -P pretrained_weights/sd-image-variations-diffusers/unet https://huggingface.co/lambdalabs/sd-image-variations-diffusers/resolve/main/unet/diffusion_pytorch_model.bin
 wget  -P pretrained_weights/image_encoder https://huggingface.co/lambdalabs/sd-image-variations-diffusers/resolve/main/image_encoder/config.json
