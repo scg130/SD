@@ -5,6 +5,7 @@ python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 python -m pip install --upgrade pip
+pip install mmcv==2.0.0rc4
 pip install --no-cache-dir -U openmim
 mim install mmengine
 mim install "mmcv>=2.0.1"
